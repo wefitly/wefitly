@@ -23,6 +23,11 @@ coverage
 # node-waf configuration
 .lock-wscript
 
+# bundle
+
+client/public/bundle.js
+
+
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
