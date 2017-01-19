@@ -1,13 +1,12 @@
 var mongoose = require('mongoose')
 
-var Schema = mongoose.schema
+var Schema = mongoose.Schema
 
 var TrainerSchema = new Schema({
   firstname: String,
   lastname: String,
   profilepic: String,
   bio: String,
-  rating: Number,
   services: String,
   hourlyrate: Number,
   location: String,
@@ -15,3 +14,4 @@ var TrainerSchema = new Schema({
 })
 
 module.exports = mongoose.model('Trainer', TrainerSchema)
+
