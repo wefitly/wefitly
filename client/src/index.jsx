@@ -22,5 +22,5 @@ class App extends React.Component {
   }
 }
 
-render(document.getElementById('app'));
+render(<App/>,document.getElementById('app'));
 //this is a comment
