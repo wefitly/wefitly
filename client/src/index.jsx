@@ -24,9 +24,10 @@ class App extends React.Component {
         <Route path="/signup" component={()=>(
           <Signup endpoint="/api/usersignup" callback={this.onUserSignUp} />)}/>
         <Route path="/trainersignup" component={()=>(
-          <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
-        )}/>
+          <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>)}/>
         <Route path="/" component={Home}/>
+        <Route path='/login' component={() => (
+          <Login endpoint="/api/login"/>)}/>
       </Router>
     );
 
