@@ -9,6 +9,7 @@ var cookieParser = require('cookie-parser')
 
 var app = express();
 app.use(cookieParser());
+app.use(bodyParser.json())
 
 app.use(session({ 
   secret: 'the mitochondria is the powerhouse of the cell',
@@ -19,6 +20,13 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.post('/api/trainerSignup',function(req,res){
+  //TODO stuff
+  console.log(req.body);
+})
+
+
 
 //mongoose.connection('mongodb://localhost/')
 // var db = mongoose.connection;
