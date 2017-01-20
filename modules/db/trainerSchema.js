@@ -17,7 +17,6 @@ var TrainerSchema = new Schema({
   introduction: String
 })
 
-<<<<<<< HEAD
 //Need to refactor these as promises
 TrainerSchema.pre('save', function(next){
   var user = this;
@@ -47,24 +46,7 @@ TrainerSchema.methods.comparePassword = function(candidatePassword, next){
     }
     next(null, isMatch)
   })
-=======
-TrainerSchema.methods.hashPassword = function(){
-  var trainer = this;
-  return new Promise(function(resolve, reject){
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
-      if(err){
-        console.error(error)
-      }
-      bcrypt.hash(trainer.password, salt, null, function(err, hash){
-        if(err){
-          console.error(error)
-        }
-        trainer.password = hash;
-        trainer.salt = salt;
-      })
-    })
-  })
->>>>>>> 4aab3bacb473db6060553f5ef70b131f186a6ea2
+
 }
 
 
