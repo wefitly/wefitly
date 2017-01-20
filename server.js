@@ -8,6 +8,9 @@ var cookieParser = require('cookie-parser')
 
 
 var app = express();
+app.use(bodyParser.urlencoded({
+      extended: true
+}))
 app.use(cookieParser());
 app.use(bodyParser.json())
 
@@ -24,6 +27,7 @@ app.use(passport.session());
 app.post('/api/trainerSignup',function(req,res){
   //TODO stuff
   console.log(req.body);
+  res.end();
 })
 
 
