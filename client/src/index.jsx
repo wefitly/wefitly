@@ -3,18 +3,29 @@ import {render} from 'react-dom';
 
 import {Router, Route, Link, hashHistory} from 'react-router';
 import Home from './home.jsx'
-import USignUp from './user-signup.jsx'
-import TrainerSignup from './trainerSignup.jsx'
-
+import Signup from './Signup.jsx'
 
 class App extends React.Component {
+
+  onUserSignUp(postRequestData){
+    console.log('user signed up')
+
+  }
+
+  onTrainerSignUp(postRequestData){
+    console.log('trainer signed up');
+
+  }
 
   render() {
     return(
 
       <Router history={hashHistory}>
-        <Route path="/signup" component={USignUp}/>
-        <Route path="/trainersignup" component={TrainerSignup}/>
+        <Route path="/signup" component={()=>(
+          <Signup endpoint="/api/usersignup" callback={this.onUserSignUp} />)}/>
+        <Route path="/trainersignup" component={()=>(
+          <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
+        )}/>
         <Route path="/" component={Home}/>
       </Router>
     );

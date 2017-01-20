@@ -1,6 +1,7 @@
 import React from 'react';
+import $ from 'jquery';
 
-class TrainerSignup extends React.Component {
+class Signup extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,8 +22,10 @@ class TrainerSignup extends React.Component {
       email: this.refs.email.value
     };
 
-    console.log(userObj);
-    // $.post('/')
+    
+    $.post(this.props.endpoint,userObj).done(function(data){
+      this.props.callback(data);
+    });
     //submit via ajax
   }
 
@@ -49,5 +52,5 @@ class TrainerSignup extends React.Component {
   }
 }
 
-export default TrainerSignup;
+export default Signup;
 
