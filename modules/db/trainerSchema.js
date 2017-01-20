@@ -3,6 +3,8 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var TrainerSchema = new Schema({
+  username: String,
+  password: String,
   firstname: String,
   lastname: String,
   profilepic: String,
@@ -13,5 +15,5 @@ var TrainerSchema = new Schema({
   introduction: String
 })
 
-module.exports = mongoose.model('Trainer', TrainerSchema)
+module.exports = TrainerSchema;
 

@@ -1,15 +1,22 @@
 import React from 'react';
 import {render} from 'react-dom';
-var trainerData = require('./trainers');
+
+import {Router, Route, Link, hashHistory} from 'react-router';
+import Home from './home.jsx'
+import USignUp from './user-signup.jsx'
+
 
 class App extends React.Component {
 
   render() {
     return(
-      <tr>
-        <td className="trainer-name">{this.props.firstname + ' ' + this.props.lastname}</td>
-      </tr>
-    )
+
+      <Router history={hashHistory}>
+        <Route path="/signup" component={USignUp}/>
+        <Route path="/" component={Home}/>
+      </Router>
+    );
+
   }
 }
 

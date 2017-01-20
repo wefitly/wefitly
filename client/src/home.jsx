@@ -3,7 +3,10 @@ import React from 'react';
 class Home extends React.Component {
   render () {
     return(
-      <p>this is the home component</p>
+      <div>
+        <a href="#/signup">Go to user signup</a>
+        <a href="#/trainersignup">Go to trainer signup</a>
+      </div>
     );
   }
 
