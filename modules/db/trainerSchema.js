@@ -17,21 +17,34 @@ var TrainerSchema = new Schema({
   introduction: String
 })
 
-TrainerSchema.methods.hashPassword = function(){
-  var trainer = this;
-  return new Promise(function(resolve, reject){
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
+//Need to refactor these as promises
+TrainerSchema.pre('save', function(next){
+  var user = this;
+  if(!user.isModified('password')){
+    return next()
+  }
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
+    if(err){
+      return next(err)
+    }
+    bcrypt.hash(user.password, salt, function(err, hash){
       if(err){
-        console.error(error)
+        return next(err)
       }
-      bcrypt.hash(trainer.password, salt, null, function(err, hash){
-        if(err){
-          console.error(error)
-        }
-        trainer.password = hash;
-        trainer.salt = salt;
-      })
+      user.password = hash;
+      user.salt = salt;
+      next();
     })
+  })
+})
+
+
+TrainerSchema.methods.comparePassword = function(candidatePassword, next){
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
+    if(err){
+      return next(err)
+    }
+    next(null, isMatch)
   })
 }
 
