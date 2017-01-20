@@ -1,4 +1,4 @@
-var mongooes = require('mongooes');
+var mongoose = require('mongooes');
 
 var Schema = mongoose.Schema;
 
