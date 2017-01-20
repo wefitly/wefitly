@@ -4,7 +4,10 @@ var bodyParser = require('body-parser');
 var session = require('express-session')
 var path = require('path');
 var passport = require('./modules/auth.js');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/wefitlytest');
 
 
 var app = express();
