@@ -23,6 +23,11 @@ coverage
 # node-waf configuration
 .lock-wscript
 
+# bundle
+
+client/public/bundle.js
+
+
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
@@ -32,6 +37,9 @@ jspm_packages
 
 # Optional npm cache directory
 .npm
+
+#Vim environment config --sschumac
+env.vim
 
 # Optional REPL history
 .node_repl_history
