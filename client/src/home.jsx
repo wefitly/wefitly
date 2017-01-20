@@ -4,8 +4,9 @@ class Home extends React.Component {
   render () {
     return(
       <div>
-        <a href="#/signup">Go to user signup</a>
-        <a href="#/trainersignup">Go to trainer signup</a>
+      <a href="#/login">Login</a>
+      <h4>Not a Member?</h4>
+      <a href="#/signup">Signup</a>
       </div>
     );
   }
