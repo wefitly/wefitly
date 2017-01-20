@@ -10,7 +10,7 @@ var cookieParser = require('cookie-parser')
 var app = express();
 app.use(bodyParser.urlencoded({
       extended: true
-}));
+}))
 app.use(cookieParser());
 app.use(bodyParser.json())
 
