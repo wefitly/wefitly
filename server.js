@@ -6,9 +6,15 @@ var path = require('path');
 var passport = require('./modules/auth.js');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
+var trainerModel = require('./modules/db/trainerSchema.js')
 
-mongoose.connect('mongodb://localhost/wefitlytest');
+mongoose.connect('mongodb://localhost:27017/wefitlytest');
 
+var db = mongoose.connection;
+
+db.once('open', function() {
+  console.log('database connected!')
+});
 
 var app = express();
 app.use(bodyParser.urlencoded({
@@ -28,10 +34,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.post('/api/trainerSignup',function(req,res){
-  console.log(req.body)
   var user = req.body
   trainerModel.schema.methods.signup(user, function(){
-    console.log('server file callback on post to signupapi')
     res.end()
   })
 })
