@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(bodyParser.json())
 
-app.use(session({ 
+app.use(session({
   secret: 'the mitochondria is the powerhouse of the cell',
   resave: false,
   saveUninitialized: true,
@@ -28,9 +28,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.post('/api/trainerSignup',function(req,res){
-  //TODO stuff
-  console.log(req.body);
-  res.end();
+  console.log(req.body)
+  var user = req.body
+  trainerModel.schema.methods.signup(user, function(){
+    console.log('server file callback on post to signupapi')
+    res.end()
+  })
 })
 
 
