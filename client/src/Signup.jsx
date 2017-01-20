@@ -47,6 +47,10 @@ class Signup extends React.Component {
           <p>
             <input type='email' name='email' required ref='email' placeholder='e-mail'/>
           </p>
+
+          <p>
+            <input type='password' name='password' required ref='ps' placeholder='Password'/>
+          </p>
           <input type='submit' value='Workout'/>
         </form>
       </div>
