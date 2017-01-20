@@ -22,5 +22,5 @@ class App extends React.Component {
   }
 }
 
-render(<App trainer={trainerData}/>, document.getElementById('app'));
+render(document.getElementById('app'));
 //this is a comment
