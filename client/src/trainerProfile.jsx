@@ -7,7 +7,7 @@ class Signup extends React.Component {
     this.state = {
       profilePicture : this.props.profilePicture
     }
-    
+
   }
 
   onSubmit(e) {
@@ -18,9 +18,11 @@ class Signup extends React.Component {
       type        : 'POST',
       ContentType :'application/json',
       data        : {
+        //we will use session ID to know which entry to apply the bio to. 
+        //so we will use the value stored in the session to find the trainer,
+        //and then apply the bio to the trainer
         'firstname':this.refs.firstname.value,
         'lastname' :this.refs.lastname.value,
-        'email'    :this.refs.email.value
       }
     }).done(function(response){
       console.log('profile data recieved');
@@ -39,12 +41,11 @@ class Signup extends React.Component {
           <input type='text' name='firstname' required ref='firstname' placeholder='First Name'>{this.props.firstname}</input><br/>
           <input type='text' name='lastname' required ref='lastname' placeholder='Last Name'>{this.props.lastname}</input><br/>
           <input type='text' name='bio' required ref='bio' placeholder='Tell us about yourself'>{this.props.bio || ''}</input><br/>
-          <p>Services Offered:</p>
-          <div>
-            <input type='radio' name='services1' value='1 on 1 personal training'> 1 on 1 personal training </br>
-            <input type='radio' name='services2' value='Diet consulting'> Diet consulting </br>
-            
-          
+          <p>Services Offered:</p><br/>
+          <input type='radio' name='1on1' value='1 on 1 personal training'/> 1 on 1 personal training <br/>
+          <input type='radio' name='dietcons' value='Diet consulting'/> Diet consulting <br/>
+          <input type='radio' name='group' value='Group Training'/>Group training<br/>
+          <input type='radio' name='remote' value='Remote Training'/>Remote Training<br/>
           <input type='submit' value='Submit' /><br/>
         </form>
       </div>
