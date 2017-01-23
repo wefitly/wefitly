@@ -22,7 +22,8 @@ class Signup extends React.Component {
       data        : {
         'firstname':this.refs.firstname.value,
         'lastname' :this.refs.lastname.value,
-        'email'    :this.refs.email.value
+        'email'    :this.refs.email.value,
+        'password': this.refs.ps.value
       }
     }).done(function(response){
       console.log('signup data recieved');
@@ -46,6 +47,10 @@ class Signup extends React.Component {
 
           <p>
             <input type='email' name='email' required ref='email' placeholder='e-mail'/>
+          </p>
+
+          <p>
+            <input type='password' name='password' required ref='ps' placeholder='Password'/>
           </p>
           <input type='submit' value='Workout'/>
         </form>
