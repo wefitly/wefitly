@@ -33,6 +33,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//routes should be in their own file, refactor later
 app.post('/api/trainerSignup',function(req,res){
   var user = req.body
   trainerModel.schema.methods.signup(user, function(){
@@ -40,6 +41,13 @@ app.post('/api/trainerSignup',function(req,res){
   })
 })
 
+app.post('/api/trainerSignin', function(req, res){
+  var password = req.body.password;
+  trainerModel.schema.methods.comparePassword(password, function(){
+    console.log('res end')
+    res.end()
+  })
+})
 
 
 //mongoose.connection('mongodb://localhost/')
