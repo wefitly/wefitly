@@ -20,18 +20,24 @@ class Signin extends React.Component {
       }
     })
      .done( (response) => {console.log('Signed In')})
-     .fail( () => {console.log)('Houston, we have a problem')})
+     .fail( () => {console.log('Houston, we have a problem')})
   }
 
   render () {
     return (
       <div>
         <form onSubmit = {this.handleSubmit}>
-          <span>Sign In</span>
-          <input type="text" name="email" placeholder="E-mail" />
-          <input type="text" name="password" placeholder="password" />
+          <h1>Sign In</h1>
+          <div>
+            <input type="text" name="email" placeholder="E-mail" />
+          </div>
+          <div>
+            <input type="text" name="password" placeholder="password" />
+          </div>
         </form>
       </div>
       )
   }
 }
+
+export default Signin;

@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 import {Router, Route, Link, hashHistory} from 'react-router';
 import Home from './home.jsx'
 import Signup from './Signup.jsx'
+import Signin from './Signin.jsx'
 
 class App extends React.Component {
 
@@ -17,14 +18,22 @@ class App extends React.Component {
 
   }
 
+  onTrainerSignin(postRequestData){
+    console.log('trainer signed in')
+  }
+
   render() {
     return(
 
       <Router history={hashHistory}>
         <Route path="/signup" component={()=>(
-          <Signup endpoint="/api/usersignup" callback={this.onUserSignUp} />)}/>
+          <Signup endpoint="/api/usersignup" callback={this.onUserSignUp} />
+        )}/>
         <Route path="/trainersignup" component={()=>(
           <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
+        )}/>
+        <Route path="/trainersignin" component={()=>(
+          <Signin endpoint="/api/trainerSingin" callback={this.onTrainerSignin}/>
         )}/>
         <Route path="/" component={Home}/>
       </Router>
