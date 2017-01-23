@@ -39,6 +39,12 @@ class Signup extends React.Component {
           <input type='text' name='firstname' required ref='firstname' placeholder='First Name'>{this.props.firstname}</input><br/>
           <input type='text' name='lastname' required ref='lastname' placeholder='Last Name'>{this.props.lastname}</input><br/>
           <input type='text' name='bio' required ref='bio' placeholder='Tell us about yourself'>{this.props.bio || ''}</input><br/>
+          <p>Services Offered:</p>
+          <div>
+            <input type='radio' name='services1' value='1 on 1 personal training'> 1 on 1 personal training </br>
+            <input type='radio' name='services2' value='Diet consulting'> Diet consulting </br>
+            
+          
           <input type='submit' value='Submit' /><br/>
         </form>
       </div>
