@@ -33,7 +33,7 @@ class App extends React.Component {
           <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
         )}/>
         <Route path="/trainersignin" component={()=>(
-          <Signin endpoint="/api/trainerSingin" callback={this.onTrainerSignin}/>
+          <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignin}/>
         )}/>
         <Route path="/" component={Home}/>
       </Router>
