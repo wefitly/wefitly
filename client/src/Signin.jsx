@@ -5,10 +5,10 @@ import $ from 'jquery';
 class Signin extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
+    console.log('handle submit triggered')
     e.preventDefault();
     $.ajax({
       url         : this.props.endpoint,
@@ -26,13 +26,16 @@ class Signin extends React.Component {
   render () {
     return (
       <div>
-        <form onSubmit = {this.handleSubmit}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <h1>Sign In</h1>
           <div>
-            <input type="text" name="email" placeholder="E-mail" />
+            <input type="text" name="email" required ref="email" placeholder="E-mail" />
           </div>
           <div>
-            <input type="text" name="password" placeholder="password" />
+            <input type="text" name="password" required ref="password" placeholder="password" />
+          </div>
+          <div>
+            <input type="submit" value="Workout" />
           </div>
         </form>
       </div>
