@@ -13,6 +13,7 @@ class Signup extends React.Component {
   }
 
   onSubmit(e) {
+    console.log('hello from on submit signup')
     e.preventDefault();
 
     $.ajax({
