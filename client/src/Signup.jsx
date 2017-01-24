@@ -13,6 +13,7 @@ class Signup extends React.Component {
   }
 
   onSubmit(e) {
+    console.log('hello from on submit signup')
     e.preventDefault();
 
     $.ajax({
@@ -22,7 +23,8 @@ class Signup extends React.Component {
       data        : {
         'firstname':this.refs.firstname.value,
         'lastname' :this.refs.lastname.value,
-        'email'    :this.refs.email.value
+        'email'    :this.refs.email.value,
+        'password': this.refs.ps.value
       }
     }).done(function(response){
       console.log('signup data recieved');

@@ -1,8 +1,8 @@
+var Q = require('q')
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 var bcrypt = require('bcrypt-nodejs')
 var SALT_WORK_FACTOR = 10;
-
 var TrainerSchema = new Schema({
   username: String,
   password: String,
@@ -16,39 +16,53 @@ var TrainerSchema = new Schema({
   location: String,
   introduction: String
 })
+var Trainer = mongoose.model('Trainer', TrainerSchema)
+module.exports = mongoose.model('Trainer', TrainerSchema)
+
+var findUser = Q.nbind(Trainer.findOne, Trainer)
+
 
 //Need to refactor these as promises
 TrainerSchema.pre('save', function(next){
-  var user = this;
-  if(!user.isModified('password')){
-    return next()
-  }
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
+  var newTrainer = this;
+  bcrypt.genSalt(10, function(err, salt){
     if(err){
-      return next(err)
+      return console.error(err)
     }
-    bcrypt.hash(user.password, salt, function(err, hash){
+    bcrypt.hash(newTrainer.password, salt, null, function(err, hash){
       if(err){
-        return next(err)
+        return console.error(err)
       }
-      user.password = hash;
-      user.salt = salt;
-      next();
+      newTrainer.password = hash;
+      newTrainer.salt = salt;
+      next()
     })
   })
 })
 
-
-TrainerSchema.methods.comparePassword = function(candidatePassword, next){
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
-    if(err){
-      return next(err)
-    }
-    next(null, isMatch)
+TrainerSchema.methods.signup = function(user, next){
+ var newTrainer = new Trainer({
+    username: user.email,
+    password: user.password
   })
+ newTrainer.save()}
 
+
+TrainerSchema.methods.comparePassword = function(email, candidatePassword, next){
+  findUser({username: email})
+  .then( (match) => {
+    if(match){
+      bcrypt.compare(candidatePassword, match.password, function(err, isMatch){
+        if(err){
+          next(err, null)
+
+        }
+        console.log('isMatch', isMatch)
+        next(null, isMatch)
+      })
+    }
+  })
 }
 
-
-module.exports = mongoose.method('Trainer', TrainerSchema)
+module.exports = mongoose.model('Trainer', TrainerSchema)
 
