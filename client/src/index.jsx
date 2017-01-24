@@ -5,12 +5,12 @@ import {Router, Route, Link, hashHistory} from 'react-router';
 import Home from './home.jsx'
 import Signup from './Signup.jsx'
 import Signin from './Signin.jsx'
+import TrainerProfile from './trainerProfile.jsx'
 
 class App extends React.Component {
 
   onUserSignUp(postRequestData){
-    console.log('user signed up')
-
+    console.log('user signed up') 
   }
 
   onTrainerSignUp(postRequestData){
@@ -29,13 +29,14 @@ class App extends React.Component {
         <Route path="/usersignup" component={()=>(
           <Signup endpoint="/api/userSignup" callback={this.onUserSignUp} />
         )}/>
-        <Route path="/trainersignup" component={()=>(
-          <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
-        )}/>
-        <Route path="/trainersignin" component={()=>(
-          <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignin}/>
-        )}/>
-        <Route path="/" component={Home}/>
+      <Route path="/trainersignup" component={()=>(
+        <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
+      )}/>
+    <Route path="/trainersignin" component={()=>(
+      <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignin}/>
+    )}/>
+  <Route path="/trainerprofile" component={TrainerProfile}/>
+  <Route path="/" component={Home}/>
       </Router>
     );
 
