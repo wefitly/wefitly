@@ -38,6 +38,7 @@ class Signup extends React.Component {
       <div id='signup'>
         <form onSubmit={this.onSubmit.bind(this)}>
           <span>Profile</span>
+          <ProfilePictureEditor/>
           <input onChange={this.handleFormChange} type='text' name='firstname'  placeholder='First Name' value={this.props.fistname || ''}></input><br/>
           <input onChange={this.handleFormChange} type='text' name='lastname' placeholder='Last Name' value={this.props.lastname || ''}></input><br/>
           <input onChange={this.handleFormChange} type='text' name='bio'  placeholder='Tell us about yourself'value={this.props.bio || ''}></input><br/>
