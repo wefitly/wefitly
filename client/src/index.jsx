@@ -10,7 +10,11 @@ import TrainerProfile from './trainerProfile.jsx'
 class App extends React.Component {
 
   onUserSignUp(postRequestData){
-    console.log('user signed up') 
+    console.log('user signed up')
+  }
+
+  onUserSignIn(postRequestData) {
+    console.log('user signed in');
   }
 
   onTrainerSignUp(postRequestData){
@@ -18,23 +22,26 @@ class App extends React.Component {
 
   }
 
-  onTrainerSignin(postRequestData){
+  onTrainerSignIn(postRequestData){
     console.log('trainer signed in')
   }
 
+
   render() {
     return(
-
       <Router history={hashHistory}>
-        <Route path="/usersignup" component={()=>(
+        <Route path="/userSignup" component={()=>(
           <Signup endpoint="/api/userSignup" callback={this.onUserSignUp} />
         )}/>
-      <Route path="/trainersignup" component={()=>(
-        <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
-      )}/>
-    <Route path="/trainersignin" component={()=>(
-      <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignin}/>
-    )}/>
+        <Route path="/userSignin" component={() => (
+          <Signin endpoint="/api/userSignin" callback={this.onUserSignin} />
+        )}/>
+        <Route path="/trainersignup" component={()=>(
+          <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
+        )}/>
+        <Route path="/trainersignin" component={()=>(
+          <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignIn}/>
+        )}/>
   <Route path="/trainerprofile" component={TrainerProfile}/>
   <Route path="/" component={Home}/>
       </Router>

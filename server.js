@@ -1,6 +1,3 @@
-
-
-
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -9,7 +6,7 @@ const path = require('path');
 const passport = require('./modules/auth.js');
 const cookieParser = require('cookie-parser');
 const TrainerModel = require('./modules/db/trainerMethods.js');
-const UserModel = require('./modules/db/userSchema.js');
+const UserModel = require('./modules/db/userMethods.js');
 
 mongoose.connect('mongodb://localhost:27017/wefitlytest');
 
@@ -39,18 +36,36 @@ app.use(session({
 
 //routes should be in their own file, refactor later
 app.post('/api/userSignup', function(req, res) {
-  new UserModel({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email: req.body.email,
-    password: req.body.ps
-  }).save(function(err) {
-    if (err) throw err;
-  })
-  // userModel.schema.methods.signup(user, function() {
-  //   res.end();
+  // new UserModel({
+  //   firstname: req.body.firstname,
+  //   lastname: req.body.lastname,
+  //   email: req.body.email,
+  //   password: req.body.ps
+  // }).save(function(err) {
+  //   if (err) throw err;
   // })
-})
+  console.log(req.body);
+  const user = req.body;
+  UserModel.signup(user, function() {
+    res.end();
+  });
+});
+
+app.post('/api/userSignin', function(req, res) {
+  const password = req.body.password;
+  const email = req.body.email;
+  UserModel.comparePassword(email, password, (err, isMatch) => {
+    if (err) {
+      res.end(err);
+    }
+    if (isMatch) {
+      req.session.email = email;
+      res.end('succss');
+    } else {
+      res.end('failed');
+    }
+  });
+});
 
 // routes should be in their own file, refactor later
 app.post('/api/trainerSignup', (req, res) => {
