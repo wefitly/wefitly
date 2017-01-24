@@ -60,6 +60,8 @@ TrainerSchema.methods.comparePassword = function(email, candidatePassword, next)
         console.log('isMatch', isMatch)
         next(null, isMatch)
       })
+    } else {
+      next("email not found")
     }
   })
 }

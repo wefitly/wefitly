@@ -5,6 +5,9 @@ import $ from 'jquery';
 class Signin extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      error: ""
+    }
   }
 
   handleSubmit(e) {
@@ -19,7 +22,16 @@ class Signin extends React.Component {
         'password' : this.refs.password.value
       }
     })
-     .done( (response) => {console.log('Signed In')})
+     .done( (response) => {
+      if (response == "success"){
+        //add some kind of redirect
+        this.setState({error: ""})
+        console.log('no error')
+      } else {
+        this.setState({error: 'username or password can\'t be found'})
+        console.log(this.state.error)
+      }
+    })
      .fail( () => {console.log('Houston, we have a problem')})
   }
 
@@ -32,10 +44,11 @@ class Signin extends React.Component {
             <input type="text" name="email" required ref="email" placeholder="E-mail" />
           </div>
           <div>
-            <input type="text" name="password" required ref="password" placeholder="password" />
+            <input type="password" name="password" required ref="password" placeholder="password" />
           </div>
           <div>
             <input type="submit" value="Workout" />
+            <p>{this.state.error}</p>
           </div>
         </form>
       </div>

@@ -45,9 +45,12 @@ app.post('/api/trainerSignin', function(req, res){
   var password = req.body.password;
   var email = req.body.email;
   trainerModel.schema.methods.comparePassword(email, password, function(err, isMatch){
+    if (err) {
+      res.end(err)
+    }
     if (isMatch){
       req.session.email = email;
-      res.end("success")//will put redirect here
+      res.end("success")
     } else {
       res.end("failed")
     }
