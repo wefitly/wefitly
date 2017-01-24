@@ -37,8 +37,8 @@ class Signup extends React.Component {
       <div id='signup'>
         <form onSubmit={this.onSubmit.bind(this)}>
           <span>Profile</span>
-          <input type='text' name='firstname' required ref='firstname' placeholder='First Name'>{this.props.firstname}</input><br/>
-          <input type='text' name='lastname' required ref='lastname' placeholder='Last Name'>{this.props.lastname}</input><br/>
+          <input type='text' name='firstname'  placeholder='First Name'>{this.props.firstname}</input><br/>
+          <input type='text' name='lastname' placeholder='Last Name'>{this.props.lastname}</input><br/>
           <input type='text' name='bio' required ref='bio' placeholder='Tell us about yourself'>{this.props.bio || ''}</input><br/>
           <p>Services Offered:</p><br/>
           <input type='radio' name='1on1' value='1 on 1 personal training'/> 1 on 1 personal training <br/>
