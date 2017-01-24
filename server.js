@@ -1,3 +1,6 @@
+
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -6,6 +9,7 @@ const path = require('path');
 const passport = require('./modules/auth.js');
 const cookieParser = require('cookie-parser');
 const TrainerModel = require('./modules/db/trainerMethods.js');
+const UserModel = require('./modules/db/userSchema.js');
 
 mongoose.connect('mongodb://localhost:27017/wefitlytest');
 
@@ -32,6 +36,22 @@ app.use(session({
 // app.use(passport.initialize());
 // app.use(passport.session());
 
+
+//routes should be in their own file, refactor later
+app.post('/api/userSignup', function(req, res) {
+  new UserModel({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    password: req.body.ps
+  }).save(function(err) {
+    if (err) throw err;
+  })
+  // userModel.schema.methods.signup(user, function() {
+  //   res.end();
+  // })
+})
+
 // routes should be in their own file, refactor later
 app.post('/api/trainerSignup', (req, res) => {
   const user = req.body;
@@ -39,6 +59,7 @@ app.post('/api/trainerSignup', (req, res) => {
     res.end();
   });
 });
+
 
 app.post('/api/trainerSignin', (req, res) => {
   const password = req.body.password;
