@@ -1,5 +1,5 @@
 import React from 'react';
-import 'ProfilePictureEditor.css'
+import css from './ProfilePictureEditor.css'
 
 const ProfilePictureEditor = (props)=>(
   <div className='profilePicture container'>

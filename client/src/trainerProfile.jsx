@@ -13,7 +13,8 @@ class Signup extends React.Component {
   }
 
   handleFormChange(e){
-    this.setState($(e.target).name, $(e.target).val());
+    this.setState({[$(e.target).attr('name')]:$(e.target).val()});
+    console.log(this.state);
   }
 
   onSubmit(e) {
@@ -37,15 +38,15 @@ class Signup extends React.Component {
       <div id='signup'>
         <form onSubmit={this.onSubmit.bind(this)}>
           <span>Profile</span>
-          <input onChange={handleFormChange} type='text' name='firstname'  placeholder='First Name'>{this.props.firstname}</input><br/>
-          <input onChange={handleFormChange} type='text' name='lastname' placeholder='Last Name'>{this.props.lastname}</input><br/>
-          <input onChange={handleFormChange} type='text' name='bio'  placeholder='Tell us about yourself'>{this.props.bio || ''}</input><br/>
+          <input onChange={this.handleFormChange} type='text' name='firstname'  placeholder='First Name' value={this.props.fistname || ''}></input><br/>
+          <input onChange={this.handleFormChange} type='text' name='lastname' placeholder='Last Name' value={this.props.lastname || ''}></input><br/>
+          <input onChange={this.handleFormChange} type='text' name='bio'  placeholder='Tell us about yourself'value={this.props.bio || ''}></input><br/>
           <p>Services Offered:</p><br/>
-          <input onChange={handleFormChange} type='radio' name='1on1' value='1 on 1 personal training'/> 1 on 1 personal training <br/>
-          <input onChange={handleFormChange} type='radio' name='dietcons' value='Diet consulting'/> Diet consulting <br/>
-          <input onChange={handleFormChange} type='radio' name='group' value='Group Training'/>Group training<br/>
-          <input onChange={handleFormChange} type='radio' name='remote' value='Remote Training'/>Remote Training<br/>
-          <input onChange={handleFormChange} type='text' name='rate' placeholder='hourly rate'></input><br/>
+          <input onChange={this.handleFormChange} type='checkbox' name='1on1' /> 1 on 1 personal training <br/>
+          <input onChange={this.handleFormChange} type='checkbox' name='dietcons' value='Diet consulting'/> Diet consulting <br/>
+          <input onChange={this.handleFormChange} type='checkbox' name='group' value='Group Training'/>Group training<br/>
+          <input onChange={this.handleFormChange} type='checkbox' name='remote' value='Remote Training'/>Remote Training<br/>
+          <input onChange={this.handleFormChange} type='text' name='rate' placeholder='hourly rate'></input><br/>
           <input type='submit' value='Submit' /><br/>
         </form>
       </div>
