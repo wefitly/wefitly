@@ -47,7 +47,7 @@ app.post('/api/userSignup', function(req, res) {
   console.log(req.body);
   const user = req.body;
   UserModel.signup(user, function() {
-    res.end();
+    res.redirect('/#/userDash');
   });
 });
 
@@ -60,7 +60,7 @@ app.post('/api/userSignin', function(req, res) {
     }
     if (isMatch) {
       req.session.email = email;
-      res.end('succss');
+      res.redirect('/#/userDash');
     } else {
       res.end('failed');
     }
@@ -85,7 +85,7 @@ app.post('/api/trainerSignin', (req, res) => {
     }
     if (isMatch) {
       req.session.email = email;
-      res.end('success');
+      res.redirect('/#/trainerDash');
     } else {
       res.end('failed');
     }
