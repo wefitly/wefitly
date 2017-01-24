@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import ProfilePictureEditor from "./ProfilePictureEditor.jsx"
 
 class Signup extends React.Component {
   constructor(props) {
@@ -36,8 +37,6 @@ class Signup extends React.Component {
       <div id='signup'>
         <form onSubmit={this.onSubmit.bind(this)}>
           <span>Profile</span>
-          <img src={this.state.profilePicture}/><br/>
-          <input type='file' name='img'/><br/>
           <input type='text' name='firstname' required ref='firstname' placeholder='First Name'>{this.props.firstname}</input><br/>
           <input type='text' name='lastname' required ref='lastname' placeholder='Last Name'>{this.props.lastname}</input><br/>
           <input type='text' name='bio' required ref='bio' placeholder='Tell us about yourself'>{this.props.bio || ''}</input><br/>
@@ -46,6 +45,7 @@ class Signup extends React.Component {
           <input type='radio' name='dietcons' value='Diet consulting'/> Diet consulting <br/>
           <input type='radio' name='group' value='Group Training'/>Group training<br/>
           <input type='radio' name='remote' value='Remote Training'/>Remote Training<br/>
+          <input type='text' name='rate' placeholder='hourly rate'></input><br/>
           <input type='submit' value='Submit' /><br/>
         </form>
       </div>
