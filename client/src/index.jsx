@@ -26,8 +26,8 @@ class App extends React.Component {
     return(
 
       <Router history={hashHistory}>
-        <Route path="/signup" component={()=>(
-          <Signup endpoint="/api/usersignup" callback={this.onUserSignUp} />
+        <Route path="/usersignup" component={()=>(
+          <Signup endpoint="/api/userSignup" callback={this.onUserSignUp} />
         )}/>
         <Route path="/trainersignup" component={()=>(
           <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
