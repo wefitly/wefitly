@@ -3,7 +3,6 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 var bcrypt = require('bcrypt-nodejs')
 var SALT_WORK_FACTOR = 10;
-
 var TrainerSchema = new Schema({
   username: String,
   password: String,
@@ -17,10 +16,10 @@ var TrainerSchema = new Schema({
   location: String,
   introduction: String
 })
-
 var Trainer = mongoose.model('Trainer', TrainerSchema)
-
 module.exports = mongoose.model('Trainer', TrainerSchema)
+
+var findUser = Q.nbind(Trainer.findOne, Trainer)
 
 
 //Need to refactor these as promises
@@ -46,18 +45,22 @@ TrainerSchema.methods.signup = function(user, next){
     username: user.email,
     password: user.password
   })
- newTrainer.save()
-}
+ newTrainer.save()}
 
 
-TrainerSchema.methods.comparePassword = function(candidatePassword, next){
-  console.log('user.password', user.password)
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
-    var err = new Error("Something has gone horribly, horribly wrong")
-    if(err){
-      return console.error(err)
+TrainerSchema.methods.comparePassword = function(email, candidatePassword, next){
+  findUser({username: email})
+  .then( (match) => {
+    if(match){
+      bcrypt.compare(candidatePassword, match.password, function(err, isMatch){
+        if(err){
+          next(err, null)
+
+        }
+        console.log('isMatch', isMatch)
+        next(null, isMatch)
+      })
     }
-    next(null, isMatch)
   })
 }
 
