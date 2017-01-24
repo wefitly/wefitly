@@ -79,7 +79,7 @@ app.post('/api/trainerSignup', (req, res) => {
 app.post('/api/trainerSignin', (req, res) => {
   const password = req.body.password;
   const email = req.body.email;
-  TrainerModel.comparePassword(email, password, (err, isMatch) => {
+  TrainerModel.comparePassword(email, password, location, (err, isMatch) => {
     if (err) {
       res.end(err);
     }
@@ -92,9 +92,15 @@ app.post('/api/trainerSignin', (req, res) => {
   });
 });
 
-// app.get('/api/getAllTrainers', TrainerModel.findAllTrainers);
+app.get('/api/filterTrainers', (req, res) => {
+  //const location = req.body.location;
+  const location = 'San Francisco';
+  TrainerModel.filterTrainers(location, (results) => {
+    res.json(results);
+  })
+});
 
-app.get('/api/filtertrainers', (req, res) => {
+app.get('/api/getAllTrainers', (req, res) => {
   TrainerModel.findAllTrainers((results) => {
     res.json(results);
   });
