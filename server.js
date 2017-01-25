@@ -97,11 +97,20 @@ app.get('/api/getAllTrainers', (req, res) => {
   });
 });
 
+app.post('/api/updateTrainer',(req,res)=>{
+  if (req.session){
+   console.log(req.body);
+  }else{
+    //unauthorized
+    res.end(401)
+  }
+})
+
 
 // mongoose.connection('mongodb://localhost/')
 // const db = mongoose.connection;
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3100;
 
 app.use(express.static(path.join(__dirname + '/client/public')));
 

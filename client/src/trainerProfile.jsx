@@ -13,14 +13,17 @@ class Signup extends React.Component {
   }
 
   handleFormChange(e){
-    this.setState({[$(e.target).attr('name')]:$(e.target).val()});
-    console.log(this.state);
+    const $ele = $(e.target)
+    if ($ele.attr('type')==='checkbox'){
+      this.setState({[$ele.attr('name')]:$ele.is(':checked')});
+    } else if ($ele.attr('type') === 'text'){
+      this.setState({[$ele.attr('name')]:$ele.val()});
+    }
+
   }
 
   onSubmit(e) {
     e.preventDefault();
-    const data = $(e.target).serializeArray().
-
     $.ajax({
       url         : '/api/trainerprofile',
       type        : 'POST',
@@ -39,9 +42,9 @@ class Signup extends React.Component {
         <form onSubmit={this.onSubmit.bind(this)}>
           <span>Profile</span>
           <ProfilePictureEditor/>
-          <input onChange={this.handleFormChange} type='text' name='firstname'  placeholder='First Name' value={this.props.fistname || ''}></input><br/>
-          <input onChange={this.handleFormChange} type='text' name='lastname' placeholder='Last Name' value={this.props.lastname || ''}></input><br/>
-          <input onChange={this.handleFormChange} type='text' name='bio'  placeholder='Tell us about yourself'value={this.props.bio || ''}></input><br/>
+          <input onChange={this.handleFormChange} type='text' name='firstname'  placeholder='First Name' value={this.state.firstname || ''}></input><br/>
+          <input onChange={this.handleFormChange} type='text' name='lastname' placeholder='Last Name' value={this.state.lastname || ''}></input><br/>
+          <input onChange={this.handleFormChange} type='text' name='bio'  placeholder='Tell us about yourself' value={this.state.bio || ''}></input><br/>
           <p>Services Offered:</p><br/>
           <input onChange={this.handleFormChange} type='checkbox' name='1on1' /> 1 on 1 personal training <br/>
           <input onChange={this.handleFormChange} type='checkbox' name='dietcons' value='Diet consulting'/> Diet consulting <br/>
