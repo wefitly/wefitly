@@ -6,6 +6,7 @@ import Home from './home.jsx'
 import Signup from './Signup.jsx'
 import Signin from './Signin.jsx'
 import TrainerProfile from './trainerProfile.jsx'
+import UserDash from './UserDash.jsx'
 
 class App extends React.Component {
 
@@ -36,6 +37,7 @@ class App extends React.Component {
         <Route path="/userSignin" component={() => (
           <Signin endpoint="/api/userSignin" callback={this.onUserSignin} />
         )}/>
+        <Route path='/userDash' component={UserDash} />
         <Route path="/trainersignup" component={()=>(
           <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
         )}/>
