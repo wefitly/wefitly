@@ -6,7 +6,12 @@ import Home from './home.jsx'
 import Signup from './Signup.jsx'
 import Signin from './Signin.jsx'
 import TrainerProfile from './trainerProfile.jsx'
+<<<<<<< 10fa82048ae10c6a74d482f52fdd334a63890299
 import UserDash from './UserDash.jsx'
+
+import FilterBar from './filterBar.jsx'
+import TrainerTable from './trainerTable.jsx'
+>>>>>>> adds a route to traner table
 
 class App extends React.Component {
 
@@ -27,6 +32,10 @@ class App extends React.Component {
     console.log('trainer signed in')
   }
 
+  onFilterTrainers(){
+    console.log('trainers filtered')
+  }
+
 
   render() {
     return(
@@ -44,8 +53,11 @@ class App extends React.Component {
         <Route path="/trainersignin" component={()=>(
           <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignIn}/>
         )}/>
-  <Route path="/trainerprofile" component={TrainerProfile}/>
-  <Route path="/" component={Home}/>
+        <Route path="/trainers" component={()=>(
+          <TrainerTable endpoint="/api/filterTrainers" callback={this.onFilterTrainers}/>
+        )}/>
+        <Route path="/trainerprofile" component={TrainerProfile}/>
+        <Route path="/" component={Home}/>
       </Router>
     );
 
