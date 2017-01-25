@@ -33,22 +33,13 @@ app.use(session({
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-
 //routes should be in their own file, refactor later
 app.post('/api/userSignup', function(req, res) {
-  // new UserModel({
-  //   firstname: req.body.firstname,
-  //   lastname: req.body.lastname,
-  //   email: req.body.email,
-  //   password: req.body.ps
-  // }).save(function(err) {
-  //   if (err) throw err;
-  // })
-  console.log(req.body);
   const user = req.body;
   UserModel.signup(user, function() {
-    res.redirect('/#/userDash');
   });
+
+  res.end("sucess");
 });
 
 app.post('/api/userSignin', function(req, res) {
@@ -60,7 +51,7 @@ app.post('/api/userSignin', function(req, res) {
     }
     if (isMatch) {
       req.session.email = email;
-      res.redirect('/#/userDash');
+      res.redirect('/api/userDash');
     } else {
       res.end('failed');
     }
@@ -85,7 +76,7 @@ app.post('/api/trainerSignin', (req, res) => {
     }
     if (isMatch) {
       req.session.email = email;
-      res.redirect('/#/trainerDash');
+      res.redirect('/api/trainerDash');
     } else {
       res.end('failed');
     }

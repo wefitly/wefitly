@@ -26,7 +26,6 @@ UserSchema.pre('save', (next) => {
 });
 
 UserModel.signup = function(user, next){
-  console.log('user signup!');
  var newUser = new UserModel({
     firstname: user.firstname,
     lastname: user.lastname,
