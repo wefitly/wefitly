@@ -1,23 +1,21 @@
 import React from 'react'
 
-var FilterBar = ({}) => (
-    <form>
-      <fieldset>
+var FilterBar = (props) => (
+    <form >
+      <fieldset >
         <legend> Filter </legend>
           <span>Select your city</span>
-            <select>
+            <select onChange={props.handleChange} >
               <option value="San Francisco">San Francisco</option>
-              <option value=""=>San Mateo</option>
-              <option value="">Pleasanton</option>
-            </select></br>
+              <option value="San Mateo">San Mateo</option>
+              <option value="Pleasanton">Pleasanton</option>
+            </select>
             <label>
-              M <input type="radio" name="rating" value="yes"/>
+              M <input type="radio" name="rating" value="male" onChange={props.handleChange}/>
             </label>
           <label>
-            F <input type="radio" name="rating" value="no" />
-          </label></br>
-
-          <input type="submit" value="submit"/>
+            F <input type="radio" name="rating" value="female"  onChange={props.handleChange}/>
+          </label>
       </fieldset>
   </form>
 )
