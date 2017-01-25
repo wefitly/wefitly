@@ -4,12 +4,6 @@ import $ from 'jquery';
 class Signup extends React.Component {
   constructor(props) {
     super(props);
-
-    // this.state = {
-    //   firstname: '',
-    //   lastname: '',
-    //   email: ''
-    // }
   }
 
   onSubmit(e) {
@@ -29,6 +23,7 @@ class Signup extends React.Component {
       }
     }).done(function(response){
       console.log('signup data recieved');
+      window.location.href = '#/userDash';
     }).fail(function(response){
       console.log('signup data transmission failure');
     })
@@ -63,6 +58,10 @@ class Signup extends React.Component {
       </div>
     );
   }
+}
+
+Signup.contextTypes = {
+      router: React.PropTypes.object.isRequired
 }
 
 export default Signup;
