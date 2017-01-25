@@ -9,7 +9,7 @@ const findAll = Q.nbind(TrainerModel.find, TrainerModel);
 
 
 TrainerSchema.pre('save', function (next) {
-  const newTrainer = this;
+  let newTrainer = this;
   bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
     if (err) {
       return console.error(err);
@@ -26,8 +26,8 @@ TrainerSchema.pre('save', function (next) {
 });
 
 TrainerModel.signup = (user, next) => {
-  console.log(user)
-  const newTrainer = new TrainerModel({
+  console.log(user);
+  let newTrainer = new TrainerModel({
     username: user.email,
     password: user.password,
     location: user.location,
@@ -63,11 +63,11 @@ TrainerModel.findAllTrainers = (next) => {
   });
 };
 
-//refactor to filter by location
+// refactor to filter by location
 TrainerModel.filterTrainers = (location, next) => {
-  findAll({ location: location}, {username: 1})
+  findAll({ location: location }, { username: 1 })
   .then((results) => {
-    return next(results)
+    return next(results);
   })
   .catch((err) => {
     console.error(err);
