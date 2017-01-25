@@ -6,12 +6,12 @@ import Home from './home.jsx'
 import Signup from './Signup.jsx'
 import Signin from './Signin.jsx'
 import TrainerProfile from './trainerProfile.jsx'
-<<<<<<< 10fa82048ae10c6a74d482f52fdd334a63890299
+
 import UserDash from './UserDash.jsx'
 
 import FilterBar from './filterBar.jsx'
 import TrainerTable from './trainerTable.jsx'
->>>>>>> adds a route to traner table
+
 
 class App extends React.Component {
 
