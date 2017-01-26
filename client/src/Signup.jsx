@@ -8,6 +8,7 @@ class Signup extends React.Component {
 
   onSubmit(e) {
     console.log('hello from on submit signup')
+    const props = this.props;
     e.preventDefault();
 
     $.ajax({
@@ -23,7 +24,7 @@ class Signup extends React.Component {
       }
     }).done(function(response){
       console.log('signup data recieved');
-      window.location.href = '#/userDash';
+      props.callback();
     }).fail(function(response){
       console.log('signup data transmission failure');
     })

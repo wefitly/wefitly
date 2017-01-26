@@ -7,57 +7,37 @@ import Signup from './Signup.jsx'
 import Signin from './Signin.jsx'
 import TrainerProfile from './trainerProfile.jsx'
 
-import UserDash from './UserDash.jsx'
-
-import FilterBar from './filterBar.jsx'
-import TrainerTable from './trainerTable.jsx'
-
-
 class App extends React.Component {
 
   onUserSignUp(postRequestData){
-    console.log('user signed up')
-  }
-
-  onUserSignIn(postRequestData) {
-    console.log('user signed in');
+    console.log('user signed up') 
   }
 
   onTrainerSignUp(postRequestData){
     console.log('trainer signed up');
+    window.location.href= '#/trainerprofile';
 
   }
 
-  onTrainerSignIn(postRequestData){
+  onTrainerSignin(postRequestData){
     console.log('trainer signed in')
   }
 
-  onFilterTrainers(){
-    console.log('trainers filtered')
-  }
-
-
   render() {
     return(
+
       <Router history={hashHistory}>
-        <Route path="/userSignup" component={()=>(
+        <Route path="/usersignup" component={()=>(
           <Signup endpoint="/api/userSignup" callback={this.onUserSignUp} />
         )}/>
-        <Route path="/userSignin" component={() => (
-          <Signin endpoint="/api/userSignin" callback={this.onUserSignin} />
-        )}/>
-        <Route path='/userDash' component={UserDash} />
-        <Route path="/trainersignup" component={()=>(
-          <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
-        )}/>
-        <Route path="/trainersignin" component={()=>(
-          <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignIn}/>
-        )}/>
-        <Route path="/trainers" component={()=>(
-          <TrainerTable endpoint="/api/filterTrainers" callback={this.onFilterTrainers}/>
-        )}/>
-        <Route path="/trainerprofile" component={TrainerProfile}/>
-        <Route path="/" component={Home}/>
+      <Route path="/trainersignup" component={()=>(
+        <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp.bind(this)}/>
+      )}/>
+    <Route path="/trainersignin" component={()=>(
+      <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignin}/>
+    )}/>
+  <Route path="/trainerprofile" component={TrainerProfile}/>
+  <Route path="/" component={Home}/>
       </Router>
     );
 

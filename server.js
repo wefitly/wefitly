@@ -76,6 +76,7 @@ app.post('/api/trainerSignin', (req, res) => {
       res.end(err);
     }
     if (isMatch) {
+      req.session.isTrainer = true;
       req.session.email = email;
       res.redirect('/api/trainerDash');
     } else {
@@ -99,7 +100,10 @@ app.get('/api/getAllTrainers', (req, res) => {
 
 app.post('/api/updateTrainer',(req,res)=>{
   if (req.session){
-   console.log(req.body);
+    if (req.session.isTrainer){
+      console.log('new trainer update request:')
+      console.log(req.body);
+    }
   }else{
     //unauthorized
     res.end(401)
