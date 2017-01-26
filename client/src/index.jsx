@@ -2,36 +2,35 @@ import React from 'react';
 import {render} from 'react-dom';
 
 import {Router, Route, Link, hashHistory} from 'react-router';
-import Home from './home.jsx'
-import Signup from './Signup.jsx'
-import Signin from './Signin.jsx'
-import TrainerProfile from './trainerProfile.jsx'
-import UserDash from './UserDash.jsx'
+import Home from './home.jsx';
+import Signup from './Signup.jsx';
+import Signin from './Signin.jsx';
+import TrainerProfile from './trainerProfile.jsx';
+import UserDash from './UserDash.jsx';
 
 
-import FilterBar from './filterBar.jsx'
-import TrainerTable from './trainerTable.jsx'
+import FilterBar from './filterBar.jsx';
+import TrainerTable from './trainerTable.jsx';
 
 
 class App extends React.Component {
 
-  onUserSignUp(postRequestData){
-    console.log('user signed up') 
+  onUserSignUp(postRequestData) {
+    window.location.href = '#/userDash';
   }
 
-  onTrainerSignUp(postRequestData){
-    console.log('trainer signed up');
-    window.location.href= '#/trainerprofile';
+  onTrainerSignUp(postRequestData) {
+    window.location.href = '#/trainerprofile';
 
   }
 
-  onTrainerSignin(postRequestData){
-    console.log('trainer signed in')
+  onTrainerSignin(postRequestData) {
+    window.location.href = '#/trainerprofile';
   }
 
 
-  onFilterTrainers(){
-    console.log('trainers filtered')
+  onFilterTrainers(postRequestData) {
+    console.log('++++++++++', postRequestData);
   }
 
   render() {

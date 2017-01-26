@@ -65,7 +65,7 @@ TrainerModel.findAllTrainers = (next) => {
 
 // refactor to filter by location
 TrainerModel.filterTrainers = (location, next) => {
-  findAll({ location: location }, { username: 1 })
+  findAll({ location: location }, { username: 1, location: 1 } )
   .then((results) => {
     return next(results);
   })

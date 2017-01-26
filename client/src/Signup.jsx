@@ -7,7 +7,6 @@ class Signup extends React.Component {
   }
 
   onSubmit(e) {
-    console.log('hello from on submit signup')
     const props = this.props;
     e.preventDefault();
 
@@ -43,9 +42,11 @@ class Signup extends React.Component {
             <input type='text' name='lastname' required ref='lastname' placeholder='Last Name'/>
           </p>
 
-          <p>
-            <input type='text' name='city' required ref='city' placeholder='city'/>
-          </p>
+          <select required ref="city">
+            <option value="San Francisco">San Francisco</option>
+            <option value="San Mateo">San Mateo</option>
+            <option value="Pleasanton">Pleasanton</option>
+          </select>
 
           <p>
             <input type='email' name='email' required ref='email' placeholder='e-mail'/>

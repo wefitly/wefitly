@@ -19,7 +19,7 @@ class TrainerTable extends React.Component {
   }
 
 
-  handleFilterChange(e, l){
+  handleFilterChange(e, l) {
     const props = this.props;
     const $ele = (l === undefined) ? this.getTargetValue(e) : l;
     $.ajax({
