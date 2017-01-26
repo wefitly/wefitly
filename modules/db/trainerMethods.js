@@ -32,7 +32,9 @@ TrainerModel.signup = (user, next) => {
     password: user.password,
     location: user.location,
   })
-  .save();
+    .save((err)=>{
+      next(err);
+    });
 };
 
 
@@ -78,7 +80,7 @@ TrainerModel.filterTrainers = (location, next) => {
 // updates is an object that corresponds to the key value pair
 // of the schema
 TrainerModel.updateTrainer = (trainerEmail, updates, next)=>{
-  update({username:trainerEmail},{$set:updates},function(err){
+  TrainerModel.update({username:trainerEmail},{$set:updates},function(err){
     if (err){
       next(err);
     }else{

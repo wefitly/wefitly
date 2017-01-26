@@ -24,6 +24,7 @@ class Signup extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    console.log('transmitting data');
     $.ajax({
       url         : '/api/updateTrainer',
       type        : 'POST',
@@ -46,7 +47,7 @@ class Signup extends React.Component {
           <input onChange={this.handleFormChange} type='text' name='lastname' placeholder='Last Name' value={this.state.lastname || ''}></input><br/>
           <input onChange={this.handleFormChange} type='text' name='bio'  placeholder='Tell us about yourself' value={this.state.bio || ''}></input><br/>
           <p>Services Offered:</p><br/>
-          <input onChange={this.handleFormChange} type='checkbox' name='1on1' /> 1 on 1 personal training <br/>
+          <input onChange={this.handleFormChange} type='checkbox' name='oneonone' /> 1 on 1 personal training <br/>
           <input onChange={this.handleFormChange} type='checkbox' name='dietcons' value='Diet consulting'/> Diet consulting <br/>
           <input onChange={this.handleFormChange} type='checkbox' name='group' value='Group Training'/>Group training<br/>
           <input onChange={this.handleFormChange} type='checkbox' name='remote' value='Remote Training'/>Remote Training<br/>

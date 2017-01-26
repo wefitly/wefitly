@@ -13,7 +13,7 @@ const TrainerSchema = new Schema({
   lastname: String,
   profilepic: String,
   bio: String,
-  services: String,
+  services: Object,
   hourlyrate: Number,
   location: String,
   introduction: String,
