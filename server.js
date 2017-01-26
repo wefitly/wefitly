@@ -22,12 +22,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(bodyParser.json());
-
+var MemoryStore = session.MemoryStore;
 app.use(session({
-  secret: 'the mitochondria is the powerhouse of the cell',
-  resave: false,
+  secret: 'themitochondriaisthepowerhouseofthecell',
+  resave: true,
+  store:new MemoryStore(),
   saveUninitialized: true,
-  cookie: { secure: true },
 }));
 
 // app.use(passport.initialize());
@@ -39,7 +39,7 @@ app.post('/api/userSignup', function(req, res) {
   UserModel.signup(user, function() {
   });
 
-  res.end("success");
+  res.end('success');
 });
 
 app.post('/api/userSignin', function(req, res) {
@@ -51,6 +51,7 @@ app.post('/api/userSignin', function(req, res) {
     }
     if (isMatch) {
       req.session.email = email;
+      req.session.save();
       res.redirect('/api/userDash');
     } else {
       res.end('failed');
@@ -61,10 +62,18 @@ app.post('/api/userSignin', function(req, res) {
 // routes should be in their own file, refactor later
 app.post('/api/trainerSignup', (req, res) => {
   const user = req.body;
-  TrainerModel.signup(user, () => {
+  TrainerModel.signup(user, (err) => {
+    if (err){
+      console.log('failed')
+      res.end('fail')
+    }else {
+      req.session.isTrainer = true;
+      req.session.email = user.email;
+      req.session.save();
+      res.end('success');
+    }
   });
 
-  res.end('success');
 });
 
 
@@ -78,9 +87,10 @@ app.post('/api/trainerSignin', (req, res) => {
     if (isMatch) {
       req.session.isTrainer = true;
       req.session.email = email;
-      res.redirect('/api/trainerDash');
+      req.session.save();
+      res.end('success');
     } else {
-      res.end('failed');
+      res.sendStatus(504);
     }
   });
 });
@@ -101,12 +111,31 @@ app.get('/api/getAllTrainers', (req, res) => {
 app.post('/api/updateTrainer',(req,res)=>{
   if (req.session){
     if (req.session.isTrainer){
-      console.log('new trainer update request:')
-      console.log(req.body);
+      const updateObj = {
+        firstname:req.body.firstname,
+        lastname:req.body.lastname,
+        bio:req.body.bio,
+        services:{
+          '1on1':req.body.oneonone?true:false,
+          'dietcons':req.body.dietcons?true:false,
+          'group':req.body.group?true:false,
+          'remote':req.body.remote?true:false,
+        },
+        rate:req.body.rate
+      }
+      TrainerModel.updateTrainer(req.session.email,updateObj,(err)=>{
+        if (err){
+          res.sendStatus(504);
+        }else{
+          res.end('success');
+        }
+      })
+    }else{
+      res.sendStatus(401);
     }
   }else{
-    //unauthorized
-    res.end(401)
+    console.log('unauth on profile');
+    res.sendStatus(401);
   }
 })
 
