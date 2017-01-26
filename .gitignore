@@ -48,3 +48,6 @@ env.vim
 
 # Optional REPL history
 .node_repl_history
+
+#Ignore folder mac
+.DS_Store
