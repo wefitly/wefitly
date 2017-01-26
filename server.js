@@ -39,7 +39,7 @@ app.post('/api/userSignup', function(req, res) {
   UserModel.signup(user, function() {
   });
 
-  res.end("sucess");
+  res.end("success");
 });
 
 app.post('/api/userSignin', function(req, res) {
@@ -62,8 +62,9 @@ app.post('/api/userSignin', function(req, res) {
 app.post('/api/trainerSignup', (req, res) => {
   const user = req.body;
   TrainerModel.signup(user, () => {
-    res.end();
   });
+
+  res.end('success');
 });
 
 
