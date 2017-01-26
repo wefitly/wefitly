@@ -12,7 +12,7 @@ import TrainerDash from './TrainerDash.jsx'
 class App extends React.Component {
 
   onUserSignUp(postRequestData) {
-    window.location.href = '#/userDash';
+    window.location.href = '#/dash';
   }
 
   onTrainerSignUp(postRequestData) {
@@ -22,6 +22,7 @@ class App extends React.Component {
   onTrainerSignin(postRequestData) {
     window.location.href = '#/trainerprofile';
   }
+
 
 
   render() {
@@ -36,6 +37,10 @@ class App extends React.Component {
       )}/>
     <Route path="/trainersignin" component={()=>(
       <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignin}/>
+    )}/>
+
+    <Route path="/usersignin" component={()=>(
+      <Signin endpoint="/api/userSignin" callback={this.onUserSignUp}/>
     )}/>
   <Route path="/trainerprofile" component={TrainerProfile}/>
   <Route path="/trainerdash" component={TrainerDash}/>
