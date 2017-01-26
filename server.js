@@ -84,8 +84,7 @@ app.post('/api/trainerSignin', (req, res) => {
 });
 
 app.get('/api/filterTrainers', (req, res) => {
-  //const location = req.body.location;
-  const location = 'San Francisco';
+  const location = req.query.location;
   TrainerModel.filterTrainers(location, (results) => {
     res.json(results);
   })
