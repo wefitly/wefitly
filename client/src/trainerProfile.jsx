@@ -25,7 +25,7 @@ class Signup extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     $.ajax({
-      url         : '/api/trainerprofile',
+      url         : '/api/updateTrainer',
       type        : 'POST',
       ContentType :'application/json',
       data        : this.state 

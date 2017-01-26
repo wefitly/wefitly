@@ -74,4 +74,17 @@ TrainerModel.filterTrainers = (location, next) => {
   });
 };
 
+// methods to allow updating of trainer records
+// updates is an object that corresponds to the key value pair
+// of the schema
+TrainerModel.updateTrainer = (trainerEmail, updates, next)=>{
+  update({username:trainerEmail},{$set:updates},function(err){
+    if (err){
+      next(err);
+    }else{
+      next();
+    }
+  })
+}
+
 module.exports = TrainerModel;
