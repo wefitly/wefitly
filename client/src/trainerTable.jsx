@@ -1,22 +1,27 @@
 import React from 'react';
-import FilterBar from './filterBar.jsx'
-import $ from 'jquery'
+import FilterBar from './filterBar.jsx';
+import $ from 'jquery';
 // import TrainerRow from './tableRow'
-class TrainerTable extends React.Component{
-  constructor(props){
+class TrainerTable extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       entries: [],
-    }
+    };
   }
 
-  getAllTrainers() {
-
+  componentDidMount() {
+    this.handleFilterChange('San Francisco');
   }
 
-  handleFilterChange(e){
-    const $ele = $(e.target).val();
-    console.log(typeof $ele)
+  getTargetValue(e) {
+    return $(e.target).val();
+  }
+
+
+  handleFilterChange(e, l){
+    const props = this.props;
+    const $ele = (l === undefined) ? this.getTargetValue(e) : l;
     $.ajax({
       url: this.props.endpoint,
       method: 'GET',
@@ -25,10 +30,10 @@ class TrainerTable extends React.Component{
         location: $ele,
       },
     })
-    .done( (response) => {
-      console.log('handleFilterChange-----');
+    .done((response) => {
+      props.callback(response);
     })
-    .fail(function(response){
+    .fail(() => {
       console.log('signup data transmission failure');
     });
   }
