@@ -7,11 +7,7 @@ import Signup from './Signup.jsx';
 import Signin from './Signin.jsx';
 import TrainerProfile from './trainerProfile.jsx';
 import UserDash from './UserDash.jsx';
-
-
-import FilterBar from './filterBar.jsx';
-import TrainerTable from './trainerTable.jsx';
-
+import TrainerDash from './TrainerDash.jsx'
 
 class App extends React.Component {
 
@@ -21,7 +17,6 @@ class App extends React.Component {
 
   onTrainerSignUp(postRequestData) {
     window.location.href = '#/trainerprofile';
-
   }
 
   onTrainerSignin(postRequestData) {
@@ -29,34 +24,23 @@ class App extends React.Component {
   }
 
 
-  onFilterTrainers(postRequestData) {
-    console.log('++++++++++', postRequestData);
-  }
-
   render() {
     return(
 
       <Router history={hashHistory}>
         <Route path="/usersignup" component={()=>(
-          <Signup endpoint="/api/userSignup" callback={this.onUserSignUp} />
+          <Signup endpoint="/api/userSignup" callback={this.onUserSignUp.bind(this)} />
         )}/>
-
-        <Route path="/userSignin" component={() => (
-          <Signin endpoint="/api/userSignin" callback={this.onUserSignin} />
-        )}/>
-        <Route path='/userDash' component={UserDash} />
-        <Route path="/trainersignup" component={()=>(
-          <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
-        )}/>
-        <Route path="/trainersignin" component={()=>(
-          <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignIn}/>
-        )}/>
-        <Route path="/trainers" component={()=>(
-          <TrainerTable endpoint="/api/filterTrainers" callback={this.onFilterTrainers}/>
-        )}/>
-        <Route path="/trainerprofile" component={TrainerProfile}/>
-        <Route path="/" component={Home}/>
-
+      <Route path="/trainersignup" component={()=>(
+        <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp.bind(this)}/>
+      )}/>
+    <Route path="/trainersignin" component={()=>(
+      <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignin}/>
+    )}/>
+  <Route path="/trainerprofile" component={TrainerProfile}/>
+  <Route path="/trainerdash" component={TrainerDash}/>
+  <Route path='/dash' component={UserDash}/>
+  <Route path="/" component={Home}/>
       </Router>
     );
 

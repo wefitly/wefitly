@@ -32,6 +32,8 @@ class Signup extends React.Component {
       data        : this.state 
     }).done(function(response){
       console.log('profile data recieved');
+      window.location.href = '#/trainerdash'
+      console.log('after dash');
     }).fail(function(response){
       console.log('profile transmission failure');
     })
