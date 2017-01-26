@@ -1,11 +1,14 @@
 import React from 'react';
 
+
+//each <td></td> tag represents a column in each <tr></tr> row
 const TableRow = (props)=>{
   return(
-    <div>
-      <p>{props.firstName}</p>
-      <p>{props.lastName}</p>
-    </div>
+    <tr>
+      <td>{props.firstName}</td>
+      <td>{props.lastName}</td>
+      <td>{':this is an example trainer row'}</td>
+    </tr>
   );
 }
 
