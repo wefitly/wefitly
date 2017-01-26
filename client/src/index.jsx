@@ -16,7 +16,8 @@ import TrainerTable from './trainerTable.jsx'
 class App extends React.Component {
 
   onUserSignUp(postRequestData){
-    console.log('user signed up') 
+    window.location.href = '#/userDash';
+    console.log('user signed up')
   }
 
   onTrainerSignUp(postRequestData){
@@ -34,6 +35,10 @@ class App extends React.Component {
     console.log('trainers filtered')
   }
 
+  onCityFilterChange(response) {
+    console.log(response);
+  }
+
   render() {
     return(
 
@@ -45,7 +50,9 @@ class App extends React.Component {
         <Route path="/userSignin" component={() => (
           <Signin endpoint="/api/userSignin" callback={this.onUserSignin} />
         )}/>
-        <Route path='/userDash' component={UserDash} />
+        <Route path='/userDash' component={() => (
+          <TrainerTable endpoint="/api/userDash" callback={this.onCityFilterChange}/>
+          )}/>
         <Route path="/trainersignup" component={()=>(
           <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
         )}/>

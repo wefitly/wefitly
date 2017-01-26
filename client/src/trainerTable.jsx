@@ -1,7 +1,7 @@
 import React from 'react';
 import FilterBar from './filterBar.jsx';
 import $ from 'jquery';
-// import TrainerRow from './tableRow'
+import TrainerRow from './tableRow.jsx';
 class TrainerTable extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +11,7 @@ class TrainerTable extends React.Component {
   }
 
   componentDidMount() {
-    this.handleFilterChange('San Francisco');
+    // this.handleFilterChange('San Francisco');
   }
 
   getTargetValue(e) {
@@ -23,7 +23,7 @@ class TrainerTable extends React.Component {
     const props = this.props;
     const $ele = (l === undefined) ? this.getTargetValue(e) : l;
     $.ajax({
-      url: this.props.endpoint,
+      url: props.endpoint,
       method: 'GET',
       ContentType :'application/json',
       data: {
@@ -38,8 +38,17 @@ class TrainerTable extends React.Component {
     });
   }
   render(){
-    return <FilterBar handleChange={this.handleFilterChange.bind(this)}/>
-  };
+    return (
+      <div>
+        <FilterBar handleChange={this.handleFilterChange.bind(this)}/>
+        <table>
+          <tbody>
+            <TrainerRow firstName={'Bruce'} lastName={'Lee'}/>
+          </tbody>
+        </table>
+      </div>
+    )
+  }
 }
 
 export default TrainerTable;
