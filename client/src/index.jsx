@@ -6,6 +6,12 @@ import Home from './home.jsx'
 import Signup from './Signup.jsx'
 import Signin from './Signin.jsx'
 import TrainerProfile from './trainerProfile.jsx'
+import UserDash from './UserDash.jsx'
+
+
+import FilterBar from './filterBar.jsx'
+import TrainerTable from './trainerTable.jsx'
+
 
 class App extends React.Component {
 
@@ -23,6 +29,11 @@ class App extends React.Component {
     console.log('trainer signed in')
   }
 
+
+  onFilterTrainers(){
+    console.log('trainers filtered')
+  }
+
   render() {
     return(
 
@@ -30,14 +41,23 @@ class App extends React.Component {
         <Route path="/usersignup" component={()=>(
           <Signup endpoint="/api/userSignup" callback={this.onUserSignUp} />
         )}/>
-      <Route path="/trainersignup" component={()=>(
-        <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp.bind(this)}/>
-      )}/>
-    <Route path="/trainersignin" component={()=>(
-      <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignin}/>
-    )}/>
-  <Route path="/trainerprofile" component={TrainerProfile}/>
-  <Route path="/" component={Home}/>
+
+        <Route path="/userSignin" component={() => (
+          <Signin endpoint="/api/userSignin" callback={this.onUserSignin} />
+        )}/>
+        <Route path='/userDash' component={UserDash} />
+        <Route path="/trainersignup" component={()=>(
+          <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
+        )}/>
+        <Route path="/trainersignin" component={()=>(
+          <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignIn}/>
+        )}/>
+        <Route path="/trainers" component={()=>(
+          <TrainerTable endpoint="/api/filterTrainers" callback={this.onFilterTrainers}/>
+        )}/>
+        <Route path="/trainerprofile" component={TrainerProfile}/>
+        <Route path="/" component={Home}/>
+
       </Router>
     );
 
