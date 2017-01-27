@@ -24,7 +24,9 @@ class Signin extends React.Component {
     })
      .done( (response) => {
       if (response == "success"){
+
         this.props.callback();
+
       } else {
         this.setState({error: 'username or password can\'t be found'})
         console.log(this.state.error)

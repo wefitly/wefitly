@@ -8,6 +8,7 @@ import Signin from './Signin.jsx';
 import TrainerProfile from './trainerProfile.jsx';
 import UserDash from './UserDash.jsx';
 import TrainerDash from './TrainerDash.jsx'
+import TrainerTable from './trainerTable.jsx';
 
 class App extends React.Component {
 
@@ -21,6 +22,7 @@ class App extends React.Component {
 
   onTrainerSignin(postRequestData) {
     window.location.href = '#/trainerdash';
+
   }
 
 
@@ -44,7 +46,9 @@ class App extends React.Component {
     )}/>
   <Route path="/trainerprofile" component={TrainerProfile}/>
   <Route path="/trainerdash" component={TrainerDash}/>
-  <Route path='/dash' component={UserDash}/>
+
+  <Route path='/dash' component={TrainerTable}/>
+
   <Route path="/" component={Home}/>
       </Router>
     );

@@ -2,10 +2,11 @@ import React from 'react';
 
 const TableRow = (props)=>{
   return(
-    <div>
-      <p>{props.firstName}</p>
-      <p>{props.lastName}</p>
-    </div>
+    <tr>
+      <td>{props.firstName}</td>
+      <td>{props.lastName}</td>
+      <td>{'This is an example trainer row'}</td>
+    </tr>
   );
 }
 
