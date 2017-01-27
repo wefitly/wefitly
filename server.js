@@ -76,6 +76,10 @@ app.post('/api/trainerSignup', (req, res) => {
 
 });
 
+//make a booking schema to save into mongodb
+app.get('/bookings', (req, res) => {
+  res.end('add booking schema');
+});
 
 app.post('/api/trainerSignin', (req, res) => {
   const password = req.body.password;

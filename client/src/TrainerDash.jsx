@@ -1,8 +1,35 @@
 import React from 'react';
-class TrainerDash extends React.Component {
+import BookingTable from './booking.jsx'
 
-  render(){
-    return <p>This is a placeholder for the trainer dashboard</p>
+class TrainerDash extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <button><a href="#/trainerprofile">Update your profile</a></button>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <h1>Your Current Bookings</h1>
+            </th>
+          </tr>
+          <thead>
+            <tr>
+              <th>Activity</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <BookingTable booking={this.props.bookings}/>
+        </tbody>
+      </table>
+    );
   }
 }
 
