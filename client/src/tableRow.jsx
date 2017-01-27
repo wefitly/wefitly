@@ -1,10 +1,13 @@
+
 import React from 'react';
 
 const TableRow = (props)=>{
   return(
-    <div>
-      <p>{props.firstName}</p>
-      <p>{props.lastName}</p>
+    <div className="row">
+      <img src={props.trainerImg} width="300px" height="250px"/>
+      <p>{props.firstname} {props.lastname} / Location:{props.location}</p>
+      <p>{props.bio}</p>
+      <p>Services: {props.services}</p>
     </div>
   );
 }
