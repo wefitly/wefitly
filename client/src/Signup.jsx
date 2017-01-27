@@ -4,15 +4,10 @@ import $ from 'jquery';
 class Signup extends React.Component {
   constructor(props) {
     super(props);
-
-    // this.state = {
-    //   firstname: '',
-    //   lastname: '',
-    //   email: ''
-    // }
   }
 
   onSubmit(e) {
+    const props = this.props;
     e.preventDefault();
 
     $.ajax({
@@ -22,10 +17,13 @@ class Signup extends React.Component {
       data        : {
         'firstname':this.refs.firstname.value,
         'lastname' :this.refs.lastname.value,
-        'email'    :this.refs.email.value
+        'location' : this.refs.city.value,
+        'email'    :this.refs.email.value,
+        'password': this.refs.ps.value,
       }
     }).done(function(response){
       console.log('signup data recieved');
+      props.callback();
     }).fail(function(response){
       console.log('signup data transmission failure');
     })
@@ -44,6 +42,12 @@ class Signup extends React.Component {
             <input type='text' name='lastname' required ref='lastname' placeholder='Last Name'/>
           </p>
 
+          <select required ref="city">
+            <option value="San Francisco">San Francisco</option>
+            <option value="San Mateo">San Mateo</option>
+            <option value="Pleasanton">Pleasanton</option>
+          </select>
+
           <p>
             <input type='email' name='email' required ref='email' placeholder='e-mail'/>
           </p>
@@ -56,6 +60,10 @@ class Signup extends React.Component {
       </div>
     );
   }
+}
+
+Signup.contextTypes = {
+      router: React.PropTypes.object.isRequired
 }
 
 export default Signup;

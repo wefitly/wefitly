@@ -1,9 +1,11 @@
-var mongoose = require('mongoose')
-var Schema = mongoose.Schema
-var bcrypt = require('bcrypt-nodejs')
-var SALT_WORK_FACTOR = 10;
+const Q = require('q');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt-nodejs');
 
-var TrainerSchema = new Schema({
+const SALT_WORK_FACTOR = 10;
+
+const TrainerSchema = new Schema({
   username: String,
   password: String,
   salt: String,
@@ -11,44 +13,54 @@ var TrainerSchema = new Schema({
   lastname: String,
   profilepic: String,
   bio: String,
-  services: String,
+  services: Object,
   hourlyrate: Number,
   location: String,
-  introduction: String
-})
+  introduction: String,
+});
 
-//Need to refactor these as promises
-TrainerSchema.pre('save', function(next){
-  var user = this;
-  if(!user.isModified('password')){
-    return next()
-  }
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
-    if(err){
-      return next(err)
+const Trainer = mongoose.model('Trainer', TrainerSchema);
+
+// Need to refactor these as promises
+TrainerSchema.pre('save', function (next) {
+  const newTrainer = this;
+  bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+    if (err) {
+      return console.error(err);
     }
-    bcrypt.hash(user.password, salt, function(err, hash){
-      if(err){
-        return next(err)
+    bcrypt.hash(newTrainer.password, salt, null, function (err, hash) {
+      if (err) {
+        return console.error(err);
       }
-      user.password = hash;
-      user.salt = salt;
+      newTrainer.password = hash;
+      newTrainer.salt = salt;
       next();
-    })
-  })
-})
+    });
+  });
+});
+
+TrainerSchema.methods.signup = function (user, next) {
+  const newTrainer = new Trainer({
+    username: user.email,
+    password: user.password,
+  });
+  newTrainer.save();
+  res.end();
+};
 
 
-TrainerSchema.methods.comparePassword = function(candidatePassword, next){
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
-    if(err){
-      return next(err)
+TrainerSchema.methods.comparePassword = function (candidatePassword, next) {
+  bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+    if (err) {
+      return console.error(err);
     }
-    next(null, isMatch)
-  })
+    next(null, isMatch);
+  });
+};
 
-}
+const TrainerModel = mongoose.model('Trainer', TrainerSchema);
 
-
-module.exports = mongoose.method('Trainer', TrainerSchema)
-
+module.exports = {
+  TrainerSchema: TrainerSchema,
+  TrainerModel: TrainerModel,
+};

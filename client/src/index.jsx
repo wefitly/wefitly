@@ -2,31 +2,50 @@ import React from 'react';
 import {render} from 'react-dom';
 
 import {Router, Route, Link, hashHistory} from 'react-router';
-import Home from './home.jsx'
-import Signup from './Signup.jsx'
-
+import Home from './home.jsx';
+import Signup from './Signup.jsx';
+import Signin from './Signin.jsx';
+import TrainerProfile from './trainerProfile.jsx';
+import UserDash from './UserDash.jsx';
+import TrainerDash from './TrainerDash.jsx'
+import TrainerTable from './trainerTable.jsx';
 class App extends React.Component {
 
-  onUserSignUp(postRequestData){
-    console.log('user signed up')
-
+  onUserSignUp(postRequestData) {
+    window.location.href = '#/dash';
   }
 
-  onTrainerSignUp(postRequestData){
-    console.log('trainer signed up');
-
+  onTrainerSignUp(postRequestData) {
+    window.location.href = '#/trainerprofile';
   }
+
+  onTrainerSignin(postRequestData) {
+    window.location.href = '#/trainerprofile';
+  }
+
+
 
   render() {
     return(
 
       <Router history={hashHistory}>
-        <Route path="/signup" component={()=>(
-          <Signup endpoint="/api/usersignup" callback={this.onUserSignUp} />)}/>
-        <Route path="/trainersignup" component={()=>(
-          <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp}/>
+        <Route path="/usersignup" component={()=>(
+          <Signup endpoint="/api/userSignup" callback={this.onUserSignUp.bind(this)} />
         )}/>
-        <Route path="/" component={Home}/>
+      <Route path="/trainersignup" component={()=>(
+        <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp.bind(this)}/>
+      )}/>
+    <Route path="/trainersignin" component={()=>(
+      <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignin}/>
+    )}/>
+
+    <Route path="/usersignin" component={()=>(
+      <Signin endpoint="/api/userSignin" callback={this.onUserSignUp}/>
+    )}/>
+  <Route path="/trainerprofile" component={TrainerProfile}/>
+  <Route path="/trainerdash" component={TrainerDash}/>
+  <Route path='/dash' component={TrainerTable}/>
+  <Route path="/" component={Home}/>
       </Router>
     );
 
