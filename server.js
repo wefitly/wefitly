@@ -52,7 +52,7 @@ app.post('/api/userSignin', function(req, res) {
     if (isMatch) {
       req.session.email = email;
       req.session.save();
-      res.redirect('/api/userDash');
+      res.end('success');
     } else {
       res.end('failed');
     }
