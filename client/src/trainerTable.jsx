@@ -1,7 +1,9 @@
 import React from 'react';
 import FilterBar from './filterBar.jsx';
 import $ from 'jquery';
+
 import TrainerRow from './tableRow.jsx';
+
 class TrainerTable extends React.Component {
   constructor(props) {
     super(props);
@@ -38,6 +40,7 @@ class TrainerTable extends React.Component {
     });
   }
   render(){
+
     return (
        <div>
         <FilterBar handleChange={this.handleFilterChange.bind(this)}/>
@@ -48,6 +51,8 @@ class TrainerTable extends React.Component {
         </table>
       </div>
     );
+
+
   };
 }
 

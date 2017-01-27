@@ -80,7 +80,9 @@ app.post('/api/trainerSignup', (req, res) => {
 app.post('/api/trainerSignin', (req, res) => {
   const password = req.body.password;
   const email = req.body.email;
-  TrainerModel.comparePassword(email, password, location, (err, isMatch) => {
+
+  TrainerModel.comparePassword(email, password, (err, isMatch) => {
+
     if (err) {
       res.end(err);
     }
