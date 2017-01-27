@@ -19,6 +19,23 @@ const TrainerSchema = new Schema({
   introduction: String,
 });
 
+TrainerSchema.pre('save', function (next) {
+  let newTrainer = this;
+  bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+    if (err) {
+      return console.error(err);
+    }
+    bcrypt.hash(newTrainer.password, salt, null, (error, hash) => {
+      if (error) {
+        return console.error(error);
+      }
+      newTrainer.password = hash;
+      newTrainer.salt = salt;
+      next();
+    });
+  });
+});
+
 const TrainerModel = mongoose.model('Trainer', TrainerSchema);
 
 module.exports = {
