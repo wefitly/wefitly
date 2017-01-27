@@ -8,7 +8,7 @@ const findUser = Q.nbind(UserModel.findOne, UserModel);
 const findAll = Q.nbind(UserModel.find, UserModel);
 
 
-UserSchema.pre('save', (next) => {
+UserSchema.pre('save', function(next){
   const newUser = this;
   bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
     if (err) {
@@ -26,10 +26,12 @@ UserSchema.pre('save', (next) => {
 });
 
 UserModel.signup = function(user, next){
+  
  var newUser = new UserModel({
     firstname: user.firstname,
     lastname: user.lastname,
-    email: user.email
+    email: user.email,
+    password: user.password
   }).save(function(err) {
     if (err) throw err;
   });
@@ -37,16 +39,18 @@ UserModel.signup = function(user, next){
 
 
 UserModel.comparePassword = (email, candidatePassword, next) => {
-  findUser({ username: email })
+  findUser({ email: email })
   .then((match) => {
     if (match) {
       bcrypt.compare(candidatePassword, match.password, (err, isMatch) => {
         if (err) {
           next(err, null);
         }
+        console.log(isMatch);
         next(null, isMatch);
       });
     } else {
+      console.log('email was not found');
       next('email not found');
     }
   });
