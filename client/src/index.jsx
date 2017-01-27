@@ -31,21 +31,20 @@ class App extends React.Component {
       <Router history={hashHistory}>
         <Route path="/usersignup" component={()=>(
           <Signup endpoint="/api/userSignup" callback={this.onUserSignUp.bind(this)} />
-        )}/>
-      <Route path="/trainersignup" component={()=>(
-        <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp.bind(this)}/>
-      )}/>
-    <Route path="/trainersignin" component={()=>(
-      <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignin}/>
-    )}/>
-
-    <Route path="/usersignin" component={()=>(
-      <Signin endpoint="/api/userSignin" callback={this.onUserSignUp}/>
-    )}/>
-  <Route path="/trainerprofile" component={TrainerProfile}/>
-  <Route path="/trainerdash" component={TrainerDash}/>
-  <Route path='/dash' component={UserDash}/>
-  <Route path="/" component={Home}/>
+        )} />
+        <Route path="/trainersignup" component={()=>(
+          <Signup endpoint="/api/trainerSignup" callback={this.onTrainerSignUp.bind(this)} />
+        )} />
+        <Route path="/trainersignin" component={()=>(
+          <Signin endpoint="/api/trainerSignin" callback={this.onTrainerSignin} />
+        )} />
+        <Route path="/usersignin" component={()=>(
+         <Signin endpoint="/api/userSignin" callback={this.onUserSignUp} />
+        )} />
+        <Route path="/trainerprofile" component={TrainerProfile} />
+        <Route path="/trainerdash" component={TrainerDash} />
+        <Route path='/dash' component={UserDash} />
+        <Route path="/" component={Home} />
       </Router>
     );
 
