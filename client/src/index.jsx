@@ -20,7 +20,7 @@ class App extends React.Component {
   }
 
   onTrainerSignin(postRequestData) {
-    window.location.href = '#/trainerprofile';
+    window.location.href = '#/trainerdash';
   }
 
 
