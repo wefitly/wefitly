@@ -1,7 +1,8 @@
 import React from 'react';
 import FilterBar from './filterBar.jsx';
 import $ from 'jquery';
-// import TrainerRow from './tableRow'
+import TableRow from './tableRow.jsx';
+
 class TrainerTable extends React.Component {
   constructor(props) {
     super(props);
@@ -11,6 +12,7 @@ class TrainerTable extends React.Component {
   }
 
   componentDidMount() {
+    console.log('mounted')
     this.handleFilterChange('San Francisco');
   }
 
@@ -23,7 +25,7 @@ class TrainerTable extends React.Component {
     const props = this.props;
     const $ele = (l === undefined) ? this.getTargetValue(e) : l;
     $.ajax({
-      url: this.props.endpoint,
+      url: '/api/filterTrainers',
       method: 'GET',
       ContentType :'application/json',
       data: {
@@ -31,14 +33,29 @@ class TrainerTable extends React.Component {
       },
     })
     .done((response) => {
-      props.callback(response);
+      let temp = [];
+      response.forEach( (item) => {
+        temp.push(item);
+      })
+      this.setState({entries: temp})
     })
     .fail(() => {
       console.log('signup data transmission failure');
     });
   }
-  render(){
-    return <FilterBar handleChange={this.handleFilterChange.bind(this)}/>
+  render() {
+    let elements = [];
+    this.state.entries.forEach(( en , index )=> {
+      console.log(en)
+      elements.push(<TableRow key= {index} firstName={en.username} lastName={en.lastname} location={en.location}/>)
+    });
+    return (
+      <div>
+        <FilterBar handleChange={this.handleFilterChange.bind(this)}/>
+        {elements}
+      </div>
+      );
+
   };
 }
 
