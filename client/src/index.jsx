@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-
+import $ from 'jquery';
 import {Router, Route, Link, hashHistory} from 'react-router';
 import Home from './home.jsx';
 import Signup from './Signup.jsx';
@@ -9,7 +9,29 @@ import TrainerProfile from './trainerProfile.jsx';
 import UserDash from './UserDash.jsx';
 import TrainerDash from './TrainerDash.jsx'
 
+const sampleBookings = [
+  {
+    activity: 'Weight Training',
+    duration: '2 hours'
+  },
+  {
+    activity: 'Endurance Running',
+    duration: '40 min'
+  },
+  {
+    activity: 'Nutritional Consulting',
+    duration: '1 hour'
+  }
+];
+
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      bookings: sampleBookings
+    }
+  }
 
   onUserSignUp(postRequestData) {
     window.location.href = '#/dash';
@@ -23,7 +45,20 @@ class App extends React.Component {
     window.location.href = '#/trainerdash';
   }
 
+  //Uncomment following code to implement get request for trainer bookings.
+  componentDidMount() {
+    // const currentBookings = this.state.bookings;
 
+    // $.get('/bookings').done((data) => {
+    //   data.forEach(function(booking) {
+    //     currentBookings.push(booking);
+    //   });
+
+    //   this.setState({
+    //     bookings: currentBookings
+    //   })
+    // })
+  }
 
   render() {
     return(
@@ -42,7 +77,9 @@ class App extends React.Component {
          <Signin endpoint="/api/userSignin" callback={this.onUserSignUp} />
         )} />
         <Route path="/trainerprofile" component={TrainerProfile} />
-        <Route path="/trainerdash" component={TrainerDash} />
+        <Route path="/trainerdash" component={() => (
+          <TrainerDash bookings={this.state.bookings} />
+        )} />
         <Route path='/dash' component={UserDash} />
         <Route path="/" component={Home} />
       </Router>
