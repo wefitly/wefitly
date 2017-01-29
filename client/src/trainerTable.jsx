@@ -12,25 +12,18 @@ class TrainerTable extends React.Component {
   }
 
   componentDidMount() {
-    console.log('mounted')
-    this.handleFilterChange('San Francisco');
+    this.getAll();
   }
 
   getTargetValue(e) {
     return $(e.target).val();
   }
 
-
-  handleFilterChange(e, l) {
-    const props = this.props;
-    const $ele = (l === undefined) ? this.getTargetValue(e) : l;
+  getAll() {
     $.ajax({
-      url: '/api/filterTrainers',
+      url: '/api/getAllTrainers',
       method: 'GET',
       ContentType :'application/json',
-      data: {
-        location: $ele,
-      },
     })
     .done((response) => {
       let temp = [];
@@ -43,10 +36,39 @@ class TrainerTable extends React.Component {
       console.log('signup data transmission failure');
     });
   }
+
+
+  handleFilterChange(e, l) {
+    const props = this.props;
+    const $ele = (l === undefined) ? this.getTargetValue(e) : l;
+    
+    if($ele === 'All'){
+      this.getAll();
+    }else{
+      $.ajax({
+        url: '/api/filterTrainers',
+        method: 'GET',
+        ContentType :'application/json',
+        data: {
+          location: $ele,
+        },
+      })
+      .done((response) => {
+        let temp = [];
+        response.forEach( (item) => {
+          temp.push(item);
+        })
+        this.setState({entries: temp})
+      })
+      .fail(() => {
+        console.log('signup data transmission failure');
+      });
+    } 
+  }
   render() {
     let elements = [];
     this.state.entries.forEach(( en , index )=> {
-      console.log(en)
+      //console.log(en)
       elements.push(<TableRow key= {index} firstName={en.username} lastName={en.lastname} location={en.location}/>)
     });
     return (

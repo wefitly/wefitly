@@ -3,7 +3,8 @@ import React from 'react';
 var FilterBar = (props) => (
   <form >
       <span>Select your city </span>
-      <select onChange={props.handleChange} >
+      <select onChange={props.handleChange}>
+        <option value="All">All Location</option>
         <option value="San Francisco">San Francisco</option>
         <option value="San Mateo">San Mateo</option>
         <option value="Pleasanton">Pleasanton</option>
