@@ -8,20 +8,22 @@ class TableRow extends React.Component {
   }
 
   handleBooking(e) {
-    console.log('here');
+
     e.preventDefault();
     $.post('/api/bookings', {
       userEmail: 'tootsie@pop.com',
       isBooked: true,
       trainerEmail: this.props.firstName,
-      service: 'weight training',
-      duration: 'Duration here'
+      service: this.refs.service.value,
+      duration: this.refs.duration.value
     }).done((results) => {
       console.log('success')
     })
+    this.refs.service.value = '';
+    this.refs.duration.value = '';
   }
 
-  render() {
+ render() {
   return(
     <div>
       <li className="testimonial-row">
@@ -37,6 +39,11 @@ class TableRow extends React.Component {
                 <li className="services-list-item">{this.props.firstName} {this.props.lastName}</li>
                 <li className="services-list-item">Location:{this.props.location}</li>
               </ul>
+                <form onSubmit={this.handleBooking.bind(this)}>
+                  <input type='text' required ref='service' placeholder='Which service?'/>
+                  <input type='text' required ref='duration' placeholder='For how long?'/>
+                  <input type='submit' value='Book it!'/>
+                </form>
             </div>
           </div>
         </div>

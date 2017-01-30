@@ -71,7 +71,6 @@ class TrainerTable extends React.Component {
     this.state.entries.forEach(( en , index )=> {
       elements.push(<TableRow key= {index} firstName={en.firstname} lastName={en.lastname} location={en.location}/>)
     });
-    console.log(elements);
     return (
       <div >
         <FilterBar handleChange={this.handleFilterChange.bind(this)}/>
