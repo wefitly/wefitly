@@ -8,21 +8,7 @@ import Signin from './Signin.jsx';
 import TrainerProfile from './trainerProfile.jsx';
 import UserDash from './UserDash.jsx';
 import TrainerDash from './TrainerDash.jsx'
-
-// const sampleBookings = [
-//   {
-//     activity: 'Weight Training',
-//     duration: '2 hours'
-//   },
-//   {
-//     activity: 'Endurance Running',
-//     duration: '40 min'
-//   },
-//   {
-//     activity: 'Nutritional Consulting',
-//     duration: '1 hour'
-//   }
-// ];
+import _ from 'lodash';
 
 class App extends React.Component {
   constructor(props) {
@@ -45,14 +31,19 @@ class App extends React.Component {
     window.location.href = '#/trainerdash';
   }
 
-  //Uncomment following code to implement get request for trainer bookings.
+  rejectBooking(booking) {
+    _.remove(this.state.bookings, booking => booking.service === booking);
+    this.setState({
+      bookings: this.state.bookings
+    });
+  }
+
   componentDidMount() {
     const currentBookings = this.state.bookings;
+    const currentUser = this.state.user;
     console.log('mounted')
     $.get('/api/bookings').done((data) => {
-      console.log("booking data", data);
       data.forEach(function(booking) {
-
         currentBookings.push(booking);
       });
 
@@ -80,7 +71,7 @@ class App extends React.Component {
         )} />
         <Route path="/trainerprofile" component={TrainerProfile} />
         <Route path="/trainerdash" component={() => (
-          <TrainerDash bookings={this.state.bookings} />
+          <TrainerDash bookings={this.state.bookings} rejectBooking={this.rejectBooking.bind(this)}/>
         )} />
         <Route path='/dash' component={UserDash} />
         <Route path="/" component={Home} />
@@ -91,4 +82,3 @@ class App extends React.Component {
 }
 
 render(<App/>,document.getElementById('app'));
-//this is a comment

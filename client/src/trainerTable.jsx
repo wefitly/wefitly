@@ -41,7 +41,7 @@ class TrainerTable extends React.Component {
   handleFilterChange(e, l) {
     const props = this.props;
     const $ele = (l === undefined) ? this.getTargetValue(e) : l;
-    
+
     if($ele === 'All'){
       this.getAll();
     }else{
@@ -63,7 +63,7 @@ class TrainerTable extends React.Component {
       .fail(() => {
         console.log('signup data transmission failure');
       });
-    } 
+    }
   }
   render() {
     let elements = [];
@@ -71,7 +71,6 @@ class TrainerTable extends React.Component {
       //console.log(en)
       elements.push(<TableRow key= {index} firstName={en.username} lastName={en.lastname} location={en.location}/>)
     });
-    console.log(elements);
     return (
       <div>
         <FilterBar handleChange={this.handleFilterChange.bind(this)}/>

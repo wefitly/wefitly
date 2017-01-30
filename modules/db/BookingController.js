@@ -1,19 +1,32 @@
 const BookingSchema = require('./bookingSchema.js');
+const UserModel = require('./userSchema.js').UserModel;
 
 module.exports = {
 
   addBooking: function(req, res) {
-    console.log('booked!');
+    UserModel.findOne({username: req.session.email}, function(err, doc ){
+      if (err) {
+        res.sendStatus(501)
+      } else {
 
-    new BookingSchema({
-      userEmail: req.body.userEmail,
-      isBooked: req.body.isBooked,
-      trainerEmail: req.body.trainerEmail,
-      service: req.body.service,
-      duration: req.body.duration
-    }).save((err) => {
-      if (err) throw err;
-    });
+        console.log('user-info for booking: ',doc);
+
+        new BookingSchema({
+          userFirstname: doc.firstname,
+          userLastname: doc.lastname,
+          isBooked: req.body.isBooked,
+          trainerEmail: req.body.trainerEmail,
+          service: req.body.service,
+          duration: req.body.duration
+        }).save((err) => {
+          if (err){
+            res.sendStatus(501);
+          }else{
+            res.sendStatus(201);
+          }
+        });
+      }
+    })
   },
 
   displayBookings: function(req, res) {

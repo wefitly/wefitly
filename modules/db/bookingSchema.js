@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var BookingSchema = new Schema({
-  userEmail: String,
+  clientFirstname: String,
+  clientLastname: String,
   isBooked: Boolean,
   trainerEmail: String,
   service: String,

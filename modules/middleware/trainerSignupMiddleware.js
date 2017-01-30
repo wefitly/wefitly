@@ -17,7 +17,7 @@ module.exports = {
         } else {
           return createTrainer({
             username: username,
-            username: password
+            password: password
           })
         }
       })
