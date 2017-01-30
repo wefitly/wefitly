@@ -58,6 +58,7 @@ module.exports = {
           const updateObj = {
             firstname:req.body.firstname,
             lastname:req.body.lastname,
+            profilepic: req.body.pic,
             bio:req.body.bio,
             services:{
               '1on1':req.body.oneonone?true:false,

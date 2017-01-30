@@ -2,6 +2,7 @@ import React from 'react';
 import FilterBar from './filterBar.jsx';
 import $ from 'jquery';
 import TableRow from './tableRow.jsx';
+import css from './home.css'
 
 class TrainerTable extends React.Component {
   constructor(props) {
@@ -68,13 +69,14 @@ class TrainerTable extends React.Component {
   render() {
     let elements = [];
     this.state.entries.forEach(( en , index )=> {
-      //console.log(en)
-      elements.push(<TableRow key= {index} firstName={en.username} lastName={en.lastname} location={en.location}/>)
+      elements.push(<TableRow key= {index} firstName={en.firstname} lastName={en.lastname} location={en.location}/>)
     });
     return (
-      <div>
+      <div >
         <FilterBar handleChange={this.handleFilterChange.bind(this)}/>
+        <ul className="trainers w-list-unstyled">
         {elements}
+        </ul>
       </div>
       );
 
