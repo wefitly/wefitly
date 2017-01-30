@@ -35,20 +35,19 @@ class Signin extends React.Component {
 
   render () {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <h1>Sign In</h1>
-          <div>
-            <input type="text" name="email" required ref="email" placeholder="E-mail" />
+      <div className="bodybody">
+        <div className="signincontainer w-container">
+          <div className="w-form">
+            <form className="signinform" data-name="Email Form" id="email-form" name="email-form" onSubmit={this.handleSubmit.bind(this)}>
+              <label for="name">Email:</label>
+              <input className="green-focus w-input" data-name="Name" id="name"  name="name" placeholder="Enter your email" required ref="email" type="text" />
+              <label for="email">Password:</label>
+              <input className="green-focus w-input" data-name="Email" id="email"  name="email" placeholder="Enter Your Password" required ref="password" type="password" />
+              <input className="green-focus signupbutton w-button" data-wait="Please wait..." type="submit" value="Submit" />
+              <p>{this.state.error}</p>
+            </form>
           </div>
-          <div>
-            <input type="password" name="password" required ref="password" placeholder="password" />
-          </div>
-          <div>
-            <input type="submit" value="Workout" />
-            <p>{this.state.error}</p>
-          </div>
-        </form>
+        </div>
       </div>
       )
   }
