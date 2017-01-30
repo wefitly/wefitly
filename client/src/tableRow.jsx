@@ -1,7 +1,6 @@
-
 import React from 'react';
 import $ from 'jquery';
-require('./css/tableRow.css');
+import css from './home.css'
 
 class TableRow extends React.Component {
   constructor(props) {
@@ -23,22 +22,28 @@ class TableRow extends React.Component {
   }
 
   render() {
-    return(
-      <div className="row">
-        <img src="http://a1.files.biography.com/image/upload/c_fill,cs_srgb,dpr_1.0,g_face,h_300,q_80,w_300/MTIwNjA4NjM0MDQyNzQ2Mzgw.jpg" width="300px" height="250px"/>
-        <div className="profile">
-          <p>Name:</p>
-          <p>Email: {this.props.firstName} {this.props.lastName} / Location:{this.props.location}</p>
-          <p>{this.props.bio}</p>
-          <p>Services: {this.props.services}
-          </p>
-          <form>
-            <button onClick={this.handleBooking.bind(this)}>Book</button>
-          </form>
+  return(
+    <div>
+      <li className="testimonial-row">
+        <div className="row-container w-clearfix">
+          <div className="row-column w-clearfix"><img className="test-image" src="http://1.bp.blogspot.com/_Zde-OxOYou4/TFb7R25xTbI/AAAAAAAAADc/uXByt3U718c/s1600/arnold_schwarzenegger.jpg" />
+          </div>
+          <div className="extended-row-column w-clearfix">
+            <div className="services-container">
+              <p className="dashboard-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+            </div>
+            <div className="services-container">
+              <ul className="services-list w-list-unstyled">
+                <li className="services-list-item">{this.props.firstName} {this.props.lastName}</li>
+                <li className="services-list-item">Location:{this.props.location}</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    );
-  }
+      </li>
+    </div>
+  );
+}
 }
 
 export default TableRow;

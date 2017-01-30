@@ -29,7 +29,7 @@ class Signup extends React.Component {
       url         : '/api/updateTrainer',
       type        : 'POST',
       ContentType :'application/json',
-      data        : this.state 
+      data        : this.state
     }).done(function(response){
       console.log('profile data recieved');
       window.location.href = '#/trainerdash'
@@ -41,22 +41,42 @@ class Signup extends React.Component {
 
   render() {
     return(
-      <div id='signup'>
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <span>Profile</span>
-          <ProfilePictureEditor/>
-          <input onChange={this.handleFormChange} type='text' name='firstname'  placeholder='First Name' value={this.state.firstname || ''}></input><br/>
-          <input onChange={this.handleFormChange} type='text' name='lastname' placeholder='Last Name' value={this.state.lastname || ''}></input><br/>
-          <input onChange={this.handleFormChange} type='text' name='bio'  placeholder='Tell us about yourself' value={this.state.bio || ''}></input><br/>
-          <p>Services Offered:</p><br/>
-          <input onChange={this.handleFormChange} type='checkbox' name='oneonone' /> 1 on 1 personal training <br/>
-          <input onChange={this.handleFormChange} type='checkbox' name='dietcons' value='Diet consulting'/> Diet consulting <br/>
-          <input onChange={this.handleFormChange} type='checkbox' name='group' value='Group Training'/>Group training<br/>
-          <input onChange={this.handleFormChange} type='checkbox' name='remote' value='Remote Training'/>Remote Training<br/>
-          <input onChange={this.handleFormChange} type='text' name='rate' placeholder='hourly rate'></input><br/>
-          <input type='submit' value='Submit' /><br/>
-        </form>
+    <div className="profiel-body">
+      <div className="heading-div">
+        <h1 className="profile-editor-heading">Edit Your Profile</h1>
       </div>
+      <div className="w-container">
+        <div className="profile-editor-wrapper w-form">
+          <form className="signinform" onSubmit={this.onSubmit.bind(this)} >
+            <label>First Name</label>
+            <input onChange={this.handleFormChange} className="green-focus w-input"  type='text' name='firstname'  placeholder='First Name' value={this.state.firstname || ''}/>
+            <label>Last Name</label>
+            <input className="green-focus w-input" onChange={this.handleFormChange} type='text' name='lastname' placeholder='Last Name' value={this.state.lastname || ''}/><label>Profile Picture</label>
+            <input onChange={this.handleFormChange} className="green-focus w-input" placeholder="Image url" name='pic' />
+            <label>Bio</label>
+            <input className="bio-input green-focus w-input"onChange={this.handleFormChange} type='text' name='bio'  placeholder='Tell us about yourself' value={this.state.bio || ''}></input>
+            <label>Services</label>
+            <div className="w-checkbox">
+              <input className="w-checkbox-input" onChange={this.handleFormChange} type='checkbox' name='oneonone' />
+              <label className="w-form-label">1-on-1 Personal Training</label>
+            </div>
+            <div className="w-checkbox">
+            <input className="w-checkbox-input" onChange={this.handleFormChange} type='checkbox' name='dietcons' value='Diet consulting'/>
+              <label className="w-form-label">Diet Consulting</label>
+            </div>
+            <div className="w-checkbox">
+              <input className="w-checkbox-input" onChange={this.handleFormChange} type='checkbox' name='group' value='Group Training'/>
+              <label className="w-form-label">Group Training</label>
+            </div>
+            <div className="w-checkbox">
+              <input className="w-checkbox-input" onChange={this.handleFormChange} type='checkbox' name='remote' value='Remote Training'/>
+              <label className="w-form-label">Remote Training</label>
+            </div>
+            <input className="signupbutton w-button" type="submit"/>
+          </form>
+        </div>
+      </div>
+    </div>
     );
   }
 }
