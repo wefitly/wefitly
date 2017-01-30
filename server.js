@@ -9,6 +9,7 @@ const TrainerModel = require('./modules/db/trainerMethods.js');
 const UserModel = require('./modules/db/userMethods.js');
 const UserController = require('./modules/db/UserController.js');
 const TrainerController = require('./modules/db/TrainerController.js');
+const BookingController = require('./modules/db/BookingController.js');
 
 mongoose.connect('mongodb://localhost:27017/wefitlytest');
 
@@ -43,7 +44,8 @@ app.post('/api/trainerSignin', TrainerController.signin);
 app.get('/api/filterTrainers', TrainerController.filter);
 app.get('/api/getAllTrainers', TrainerController.getAll);
 app.post('/api/updateTrainer', TrainerController.updateTrainer);
-
+app.post('/api/bookings', BookingController.addBooking);
+app.get('/api/bookings', BookingController.displayBookings);
 // mongoose.connection('mongodb://localhost/')
 // const db = mongoose.connection;
 

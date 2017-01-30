@@ -9,27 +9,27 @@ import TrainerProfile from './trainerProfile.jsx';
 import UserDash from './UserDash.jsx';
 import TrainerDash from './TrainerDash.jsx'
 
-const sampleBookings = [
-  {
-    activity: 'Weight Training',
-    duration: '2 hours'
-  },
-  {
-    activity: 'Endurance Running',
-    duration: '40 min'
-  },
-  {
-    activity: 'Nutritional Consulting',
-    duration: '1 hour'
-  }
-];
+// const sampleBookings = [
+//   {
+//     activity: 'Weight Training',
+//     duration: '2 hours'
+//   },
+//   {
+//     activity: 'Endurance Running',
+//     duration: '40 min'
+//   },
+//   {
+//     activity: 'Nutritional Consulting',
+//     duration: '1 hour'
+//   }
+// ];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      bookings: sampleBookings
+      bookings: []
     }
   }
 
@@ -47,17 +47,19 @@ class App extends React.Component {
 
   //Uncomment following code to implement get request for trainer bookings.
   componentDidMount() {
-    // const currentBookings = this.state.bookings;
+    const currentBookings = this.state.bookings;
+    console.log('mounted')
+    $.get('/api/bookings').done((data) => {
+      console.log("booking data", data);
+      data.forEach(function(booking) {
 
-    // $.get('/bookings').done((data) => {
-    //   data.forEach(function(booking) {
-    //     currentBookings.push(booking);
-    //   });
+        currentBookings.push(booking);
+      });
 
-    //   this.setState({
-    //     bookings: currentBookings
-    //   })
-    // })
+      this.setState({
+        bookings: currentBookings
+      })
+    })
   }
 
   render() {
