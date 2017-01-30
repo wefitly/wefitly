@@ -1,0 +1,21 @@
+img {
+  float: left;
+}
+
+.row {
+  width:600px;
+  height:250px;
+  margin-bottom: 20px;
+  border:1px solid black;
+}
+
+.profile {
+  position: relative;
+  left:10px;
+}
+
+
+
+
+
+
