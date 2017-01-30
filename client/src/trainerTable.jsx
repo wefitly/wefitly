@@ -66,12 +66,46 @@ class TrainerTable extends React.Component {
     } 
   }
   render() {
+
     let elements = [];
+    let length;
+
     this.state.entries.forEach(( en , index )=> {
-      //console.log(en)
-      elements.push(<TableRow key= {index} firstName={en.username} lastName={en.lastname} location={en.location}/>)
+      let services = '';
+      if(en.services){
+        length = Object.entries(en.services).length-1;
+        Object.entries(en.services).forEach((service, index)=>{
+          if(service[1] === true){
+            
+            if(service[0] === '1on1') {
+              service[0] = '1 on 1 personal training'; 
+            }else if(service[0] === 'dietcons') {
+              service[0] = 'Diet consulting';
+            }else if(service[0] === 'group') {
+              service[0] ='Group training';
+            }else if(service[0] === 'remote') {
+              service[0] ='Remote Training';
+            }
+
+            if(index === length){
+              services+=service[0];
+            }else{
+              services+=service[0]+' / ';
+            }
+
+          }
+        });
+      }
+      
+      elements.push(<TableRow 
+        key= {index} 
+        firstName={en.firstname} 
+        lastName={en.lastname} 
+        location={en.location}
+        bio={en.bio}
+        services={services}/>)
     });
-    console.log(elements);
+
     return (
       <div>
         <FilterBar handleChange={this.handleFilterChange.bind(this)}/>
