@@ -27,11 +27,11 @@ class TableRow extends React.Component {
       <div className="row">
         <img src="http://a1.files.biography.com/image/upload/c_fill,cs_srgb,dpr_1.0,g_face,h_300,q_80,w_300/MTIwNjA4NjM0MDQyNzQ2Mzgw.jpg" width="300px" height="250px"/>
         <div className="profile">
-          <p>Name:</p>
-          <p>Email: {this.props.firstName} {this.props.lastName} / Location:{this.props.location}</p>
+          <p>Name: {this.props.firstName} {this.props.lastName}</p>
+          <p>Location:{this.props.location}</p>
           <p>{this.props.bio}</p>
-          <p>Services: {this.props.services}
-          </p>
+          Services
+          <p>{this.props.services}</p>
           <form>
             <button onClick={this.handleBooking.bind(this)}>Book</button>
           </form>
