@@ -4,7 +4,9 @@ var Schema = mongoose.Schema;
 var BookingSchema = new Schema({
   userEmail: String,
   isBooked: Boolean,
-  trainerEmail: String
+  trainerEmail: String,
+  service: String,
+  duration: String
 });
 
 module.exports = mongoose.model('Booking', BookingSchema);

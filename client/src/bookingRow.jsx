@@ -8,8 +8,9 @@ class BookingRow extends React.Component {
   render() {
     return(
       <tr>
-        <td>{this.props.activity}</td>
+        <td>{this.props.userEmail}</td>
         <td>{this.props.duration}</td>
+        <td>{this.props.service}</td>
       </tr>
     );
   }

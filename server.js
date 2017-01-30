@@ -44,8 +44,8 @@ app.post('/api/trainerSignin', TrainerController.signin);
 app.get('/api/filterTrainers', TrainerController.filter);
 app.get('/api/getAllTrainers', TrainerController.getAll);
 app.post('/api/updateTrainer', TrainerController.updateTrainer);
-app.post('/api/booking', BookingController.addBooking);
-
+app.post('/api/bookings', BookingController.addBooking);
+app.get('/api/bookings', BookingController.displayBookings);
 // mongoose.connection('mongodb://localhost/')
 // const db = mongoose.connection;
 
