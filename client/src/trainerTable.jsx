@@ -2,6 +2,7 @@ import React from 'react';
 import FilterBar from './filterBar.jsx';
 import $ from 'jquery';
 import TableRow from './tableRow.jsx';
+import css from './home.css'
 
 class TrainerTable extends React.Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class TrainerTable extends React.Component {
   handleFilterChange(e, l) {
     const props = this.props;
     const $ele = (l === undefined) ? this.getTargetValue(e) : l;
-    
+
     if($ele === 'All'){
       this.getAll();
     }else{
@@ -63,19 +64,19 @@ class TrainerTable extends React.Component {
       .fail(() => {
         console.log('signup data transmission failure');
       });
-    } 
+    }
   }
   render() {
     let elements = [];
     this.state.entries.forEach(( en , index )=> {
-      //console.log(en)
-      elements.push(<TableRow key= {index} firstName={en.username} lastName={en.lastname} location={en.location}/>)
+      elements.push(<TableRow key= {index} firstName={en.firstname} lastName={en.lastname} location={en.location}/>)
     });
-    console.log(elements);
     return (
-      <div>
+      <div >
         <FilterBar handleChange={this.handleFilterChange.bind(this)}/>
+        <ul className="trainers w-list-unstyled">
         {elements}
+        </ul>
       </div>
       );
 

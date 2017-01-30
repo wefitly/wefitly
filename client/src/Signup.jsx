@@ -1,5 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
+import css from './home.css';
+
 
 class Signup extends React.Component {
   constructor(props) {
@@ -31,33 +33,36 @@ class Signup extends React.Component {
 
   render() {
     return(
-      <div id='signup'>
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <span>Sign-up</span>
-          <p>
-            <input type='text' name='firstname' required ref='firstname' placeholder='First Name'/>
-          </p>
-
-          <p>
-            <input type='text' name='lastname' required ref='lastname' placeholder='Last Name'/>
-          </p>
-
-          <select required ref="city">
-            <option value="San Francisco">San Francisco</option>
-            <option value="San Mateo">San Mateo</option>
-            <option value="Pleasanton">Pleasanton</option>
-          </select>
-
-          <p>
-            <input type='email' name='email' required ref='email' placeholder='e-mail'/>
-          </p>
-
-          <p>
-            <input type='password' name='password' required ref='ps' placeholder='Password'/>
-          </p>
-          <input type='submit' value='Workout'/>
-        </form>
-      </div>
+      <div id='signup'className="bodybody">
+        <div  className="w-container">
+          <div className="w-form">
+            <form className="signinform" data-name="Email Form" id="email-form" name="email-form" onSubmit={this.onSubmit.bind(this)}>
+              <label for="field-3">First Name</label>
+              <input className="green-focus w-input" id="field-3"  name="field-3" placeholder="Enter your first name" required ref='firstname' type="text" />
+              <label for="field">Last Name</label>
+              <input className=" green-focus w-input" id="field" name="field" placeholder="Enter your last name" required ref='lastname' type="text" />
+              <label for="field-2">Location</label>
+              <select className="w-select" id="field-2" name="field-2" required ref="city">
+                <option value="">Select one...</option>
+                <option value="First">San Francisco</option>
+                <option value="Second">San Mateo</option>
+                <option value="Third">Pleasanton</option>
+              </select>
+              <label for="name">Email:</label>
+              <input className="green-focus w-input" data-name="Name" id="name" name="name" placeholder="Enter your email" type="email" required ref="email" />
+              <label for="email">Password:</label>
+              <input className="green-focus w-input" data-name="Email" id="email" name="email" placeholder="Enter your password" required ref='ps' type="password" />
+              <input className="green-focus signupbutton w-button" data-wait="Please wait..." type="submit" value="Workout" />
+            </form>
+            <div className="w-form-done">
+              <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div className="w-form-fail">
+              <div>Oops! Something went wrong while submitting the form</div>
+            </div>
+          </div>
+        </div>
+       </div>
     );
   }
 }

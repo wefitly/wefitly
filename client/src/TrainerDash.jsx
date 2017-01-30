@@ -1,5 +1,8 @@
 import React from 'react';
 import BookingTable from './booking.jsx'
+import _ from 'lodash';
+
+import TrainerProfileEditor from './trainerProfile.jsx'
 
 class TrainerDash extends React.Component {
   constructor(props) {
@@ -8,7 +11,8 @@ class TrainerDash extends React.Component {
 
   render() {
     return (
-      <table>
+      <div>
+       <table>
         <tbody>
           <tr>
             <td>
@@ -17,18 +21,13 @@ class TrainerDash extends React.Component {
           </tr>
           <tr>
             <th>
-              <h1>Your Current Bookings</h1>
+              <h1>Your Pending Bookings</h1>
             </th>
           </tr>
-          <thead>
-            <tr>
-              <th>Activity</th>
-              <th>Duration</th>
-            </tr>
-          </thead>
-          <BookingTable booking={this.props.bookings}/>
+          <BookingTable booking={this.props.bookings} rejectBooking={this.props.rejectBooking}/>
         </tbody>
       </table>
+      </div>
     );
   }
 }

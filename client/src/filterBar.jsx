@@ -1,16 +1,14 @@
 import React from 'react';
 
 var FilterBar = (props) => (
-  <form >
-      <span>Select your city </span>
-      <select onChange={props.handleChange}>
-        <option value="All">All Location</option>
-        <option value="San Francisco">San Francisco</option>
-        <option value="San Mateo">San Mateo</option>
-        <option value="Pleasanton">Pleasanton</option>
-      </select>
-      <p></p>
-  </form>
+      <form data-name="Email Form" id="email-form" name="email-form">
+        <select className="w-select" id="field" name="field" onChange={props.handleChange}>
+          <option value="">Select one...</option>
+          <option value="First">San Francisco</option>
+          <option value="Second">San Mateo</option>
+          <option value="Third">Pleasanton</option>
+        </select>
+      </form>
 );
 
 export default FilterBar;
