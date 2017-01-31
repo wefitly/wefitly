@@ -5,18 +5,19 @@ class BookingRow extends React.Component {
   constructor(props) {
     super(props);
   }
-  //implement reject booking and accept booking later
-  // renderActions() {
-  //   return(
-  //      <td>
-  //       <button onClick={this.props.rejectBooking.bind(this, this.props.service)}>Reject</button>
-  //     </td>
-  //   );
-  // }
+
+  renderActions() {
+    return(
+       <td>
+        <button onClick={this.props.rejectBooking.bind(this, this.props.service)}>Reject</button>
+      </td>
+    );
+  }
 
   render() {
     console.log(this.props);
     return(
+
       <li className="testimonial-row">
         <div className="w-row">
           <div className="booking-column w-col w-col-4">
@@ -35,6 +36,7 @@ class BookingRow extends React.Component {
           </div>
         </div>
       </li>
+
     );
   }
 }

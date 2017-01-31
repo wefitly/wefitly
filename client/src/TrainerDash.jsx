@@ -11,6 +11,7 @@ class TrainerDash extends React.Component {
   }
 
   render() {
+
     return (
       <div className="dash-body">
         <div className="dash-container w-container">

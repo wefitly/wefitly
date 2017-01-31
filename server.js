@@ -31,6 +31,7 @@ app.use(session({
   resave: true,
   store:new MemoryStore(),
   saveUninitialized: true,
+  httpOnly:false
 }));
 
 // app.use(passport.initialize());

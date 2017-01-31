@@ -1,5 +1,6 @@
 import React from 'react';
 import BookingRow from './bookingRow.jsx';
+
 const BookingTable = ({booking, rejectBooking}) => (
   <div>
     <ul className="trainers w-list-unstyled">
@@ -10,6 +11,7 @@ const BookingTable = ({booking, rejectBooking}) => (
   </div>
 );
 
+
 export default BookingTable;
 //reject Booking implementation to be added later
-// rejectBooking={rejectBooking.rejectBooking}
+// rejectBooking={rejectBooking}
