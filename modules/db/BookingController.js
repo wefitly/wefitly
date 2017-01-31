@@ -9,7 +9,7 @@ module.exports = {
         res.sendStatus(501)
       } else {
 
-        console.log('user-info for booking: ',doc);
+        console.log('user-info for booking: ', doc);
 
         new BookingSchema({
           userFirstname: doc.firstname,
@@ -31,7 +31,7 @@ module.exports = {
 
   displayBookings: function(req, res) {
     console.log('trying to display');
-    BookingSchema.find({}).exec(function(err, booking) {
+    BookingSchema.find({trainerEmail: req.session.email}).exec(function(err, booking) {
       if (err) throw err;
       else {
         res.send(booking);
