@@ -102,10 +102,11 @@ class TrainerTable extends React.Component {
         firstName={en.firstname}
         lastName={en.lastname}
         location={en.location}
+        email={en.username}
         bio={en.bio}
         services={services}/>)
     });
-    console.log(elements);
+
     return (
       <div >
         <FilterBar handleChange={this.handleFilterChange.bind(this)}/>

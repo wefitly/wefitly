@@ -4,14 +4,14 @@ class BookingRow extends React.Component {
   constructor(props) {
     super(props);
   }
-  //implement reject booking and accept booking later
-  // renderActions() {
-  //   return(
-  //      <td>
-  //       <button onClick={this.props.rejectBooking.bind(this, this.props.service)}>Reject</button>
-  //     </td>
-  //   );
-  // }
+
+  renderActions() {
+    return(
+       <td>
+        <button onClick={this.props.rejectBooking.bind(this, this.props.service)}>Reject</button>
+      </td>
+    );
+  }
 
   render() {
     console.log(this.props);
@@ -27,6 +27,7 @@ class BookingRow extends React.Component {
       <tr>
         <td>{this.props.service}</td>
         <td>{this.props.duration}</td>
+        {this.renderActions()}
       </tr>
       </thead>
     );
