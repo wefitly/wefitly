@@ -49,4 +49,19 @@ TrainerModel.updateTrainer = (trainerEmail, updates, next)=>{
   })
 }
 
+// retrieves profile info of trainer.
+// used in profile editor to bring prior information in before
+// editing
+//
+TrainerModel.getProfile = (trainerEmail, next)=>{
+  TrainerModel.findOne({username:trainerEmail},function(err, doc){
+    if (err){
+      next(err,null);
+    } else {
+      next(null,doc);
+    }
+
+  })
+}
+
 module.exports = TrainerModel;
