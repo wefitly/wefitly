@@ -4,13 +4,15 @@ const UserModel = require('./userSchema.js').UserModel;
 module.exports = {
 
   addBooking: function(req, res) {
-    UserModel.findOne({username: req.session.email}, function(err, doc ){
+
+    UserModel.find({username: req.session.email}).exec(function(err, doc){
+      console.log("inside findOne:", req.session.email)
       if (err) {
         res.sendStatus(501)
       } else {
 
-        console.log('user-info for booking: ',doc);
-
+          console.log('user-info for booking: ', doc);
+          console.log('req.body:', req.body);
         new BookingSchema({
           userFirstname: doc.firstname,
           userLastname: doc.lastname,
@@ -30,8 +32,8 @@ module.exports = {
   },
 
   displayBookings: function(req, res) {
-    console.log('trying to display');
-    BookingSchema.find({}).exec(function(err, booking) {
+    console.log('req.session.email', req.session);
+    BookingSchema.find({trainerEmail: req.session.email}).exec(function(err, booking) {
       if (err) throw err;
       else {
         res.send(booking);

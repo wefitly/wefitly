@@ -1,6 +1,7 @@
 import React from 'react';
 import BookingTable from './booking.jsx'
 import _ from 'lodash';
+import css from './home.css'
 
 import TrainerProfileEditor from './trainerProfile.jsx'
 
@@ -10,23 +11,18 @@ class TrainerDash extends React.Component {
   }
 
   render() {
+
     return (
-      <div>
-       <table>
-        <tbody>
-          <tr>
-            <td>
-              <button><a href="#/trainerprofile">Update your profile</a></button>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <h1>Your Pending Bookings</h1>
-            </th>
-          </tr>
+      <div className="dash-body">
+        <div className="dash-container w-container">
+          <h1>Pending Bookings</h1>
           <BookingTable booking={this.props.bookings} rejectBooking={this.props.rejectBooking}/>
-        </tbody>
-      </table>
+          <div className="w-form">
+            <form className="update-profile-wrapper w-clearfix" id="email-form">
+              <input className="signupbutton w-button" type="submit" value="Update Your Profile" />
+            </form>
+          </div>
+        </div>
       </div>
     );
   }
