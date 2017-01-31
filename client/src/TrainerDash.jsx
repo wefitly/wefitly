@@ -10,6 +10,7 @@ class TrainerDash extends React.Component {
   }
 
   render() {
+
     return (
       <div>
        <table>
