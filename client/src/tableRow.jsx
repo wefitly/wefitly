@@ -11,7 +11,6 @@ class TableRow extends React.Component {
 
     e.preventDefault();
     $.post('/api/bookings', {
-      userEmail: 'tootsie@pop.com',
       isBooked: true,
       trainerEmail: this.props.firstName,
       service: this.refs.service.value,

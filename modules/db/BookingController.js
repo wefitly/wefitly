@@ -9,11 +9,11 @@ module.exports = {
         res.sendStatus(501)
       } else {
 
-        console.log('user-info for booking: ',doc);
+        console.log('user-info for booking: ', doc);
 
         new BookingSchema({
-          userFirstname: doc.firstname,
-          userLastname: doc.lastname,
+          clientFirstname: doc.firstname,
+          clientLastname: doc.lastname,
           isBooked: req.body.isBooked,
           trainerEmail: req.body.trainerEmail,
           service: req.body.service,
