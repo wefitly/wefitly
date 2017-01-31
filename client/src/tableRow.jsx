@@ -8,7 +8,6 @@ class TableRow extends React.Component {
   }
 
   handleBooking(e) {
-
     e.preventDefault();
     $.post('/api/bookings', {
       isBooked: true,
@@ -44,9 +43,9 @@ class TableRow extends React.Component {
           <div className="booking-div">
             <div className="booking-wrapper w-form">
               <form onSubmit={this.handleBooking.bind(this)} className="booking-wrapper w-clearfix">
-                <input className="book-button-alignment signupbutton w-button" type="submit" value="Book"/>
-                <input className="booking-input green-focus w-input" placeholder="How Long?" type="text"  required ref='duration'/>
                 <input className="booking-input green-focus w-input" placeholder="Which Service?" type="text" required ref='service' />
+                <input className="booking-input green-focus w-input" placeholder="How Long?" type="text"  required ref='duration'/>
+                <input className="book-button-alignment signupbutton w-button" type="submit" value="Book"/>
               </form>
             </div>
           </div>

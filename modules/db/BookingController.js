@@ -36,6 +36,7 @@ module.exports = {
     BookingSchema.find({trainerEmail: req.session.email}).exec(function(err, booking) {
       if (err) throw err;
       else {
+        console.log('booking:', booking)
         res.send(booking);
       }
     });
