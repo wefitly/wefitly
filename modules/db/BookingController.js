@@ -12,8 +12,8 @@ module.exports = {
         console.log('user-info for booking: ', doc);
 
         new BookingSchema({
-          clientFirstname: doc.firstname,
-          clientLastname: doc.lastname,
+          userFirstname: doc.firstname,
+          userLastname: doc.lastname,
           isBooked: req.body.isBooked,
           trainerEmail: req.body.trainerEmail,
           service: req.body.service,
@@ -31,7 +31,7 @@ module.exports = {
 
   displayBookings: function(req, res) {
     console.log('trying to display');
-    BookingSchema.find({}).exec(function(err, booking) {
+    BookingSchema.find({trainerEmail: req.session.email}).exec(function(err, booking) {
       if (err) throw err;
       else {
         res.send(booking);
